@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "workspaces": [
+    "starters/*",
+    "themes/*"
+  ],
+  "name": "gatsby-theme-hyperobjekt",
+  "devDependencies": {
+    "@testing-library/cypress": "^7.0.0",
+    "axe-core": "^4.0.1",
+    "cypress": "^4.12.1",
+    "cypress-axe": "^0.8.1",
+    "gatsby-cypress": "^0.4.12",
+    "lerna": "^3.22.1",
+    "start-server-and-test": "^1.11.5"
+  },
+  "scripts": {
+    "develop:core": "yarn workspace gatsby-starter-hyperobjekt develop",
+    "build:core": "yarn workspace gatsby-starter-hyperobjekt build",
+    "serve:core": "yarn workspace gatsby-starter-hyperobjekt serve",
+    "clean:core": "yarn workspace gatsby-starter-hyperobjekt clean",
+    "test:core": "start-server-and-test develop:core http://localhost:8000 cy:open",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  }
+}
