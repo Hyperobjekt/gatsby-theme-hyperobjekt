@@ -1,7 +1,13 @@
 name: Publish Starters
-on: push
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "starters/**"
+      - ".github/**"
 jobs:
-  master:
+  main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
