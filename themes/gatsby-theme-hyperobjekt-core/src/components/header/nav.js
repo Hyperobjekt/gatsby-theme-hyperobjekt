@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => {
         left: 0,
         minWidth: 240,
         opacity: 0,
+        pointerEvents: "none",
         background: theme.palette.primary.main,
         transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
       },
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => {
       justifyContent: "center",
       padding: 0,
       "&:hover $subMenu, &:focus-within $subMenu": {
+        pointerEvents: "all",
         opacity: 1,
       },
     },
