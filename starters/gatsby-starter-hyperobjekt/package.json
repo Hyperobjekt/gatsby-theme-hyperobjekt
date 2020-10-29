@@ -2,7 +2,6 @@
   "name": "gatsby-starter-hyperobjekt",
   "description": "Gatsby Starter for Hyperobjekt",
   "version": "1.0.0",
-  "private": true,
   "author": "Lane Olson <laneolson@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -29,5 +28,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hyperobjekt/gatsby-starter-hyperobjekt"
   }
 }
