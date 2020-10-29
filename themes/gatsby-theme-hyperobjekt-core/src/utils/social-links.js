@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSiteMetadata } from "gatsby-theme-hyperobjekt-core"
-import { useHyperobjektConfig } from "gatsby-theme-hyperobjekt-core"
+import { useSiteConfig } from "gatsby-theme-hyperobjekt-core"
 import {
   FaRegEnvelope,
   FaTwitter,
@@ -39,7 +39,7 @@ import {
 
 export const SocialHeader = () => {
   const { socialLinks } = useSiteMetadata()
-  const { useSocialLinks } = useHyperobjektConfig()
+  const { useSocialLinks } = useSiteConfig()
   if (useSocialLinks === false) {
     return null
   }
@@ -561,7 +561,7 @@ export const SocialHeader = () => {
 
 export const SocialFooter = () => {
   const { socialLinks } = useSiteMetadata()
-  const { useSocialLinks } = useHyperobjektConfig()
+  const { useSocialLinks } = useSiteConfig()
   if (useSocialLinks === false) {
     return null
   }

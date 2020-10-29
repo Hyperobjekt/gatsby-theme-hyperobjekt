@@ -4,31 +4,16 @@ module.exports = {
     description: `Speed up your GatsbyJS development workflow. Designed as a set of opinionated and advanced themes and starters using MDX and Theme-UI. Incorporates gatsby-theme-hyperobjekt-core.`,
     keywords: [`gatsby`, `theme`, `react`],
     author: `Lane Olson`,
-    siteUrl: `https://gatsby-starter-hyperobjekt.netlify.app`, //Change to you site address, required for sitemap.xml and robots.txt file among other things
     menuLinks: [
       {
-        name: `Left Link`,
-        link: `/page-1`,
+        name: `Home`,
+        link: `/`,
         type: `internal`, //internal or anchor
-        location: `left`,
       },
       {
         name: `Page 1`,
         link: `/page-1`,
         type: `internal`, //internal or anchor
-        location: `right`,
-      },
-      {
-        name: `Anchor 1`,
-        link: `#anchor-1`,
-        type: `anchor`, //internal or anchor
-        location: `right`,
-      },
-      {
-        name: `Page 2`,
-        link: `/page-2`,
-        type: `internal`, //internal or anchor
-        location: `right`,
         subMenu: [
           {
             name: `Sub 1`,
@@ -41,6 +26,11 @@ module.exports = {
             type: `internal`, //internal or anchor
           },
         ],
+      },
+      {
+        name: `Page 2`,
+        link: `/page-2`,
+        type: `internal`, //internal or anchor
       },
     ],
     socialLinks: [
@@ -73,7 +63,8 @@ module.exports = {
         // displaySiteLogoMobile: true,
         // displaySiteTitleMobile: true,
         // invertLogo: false,
-        // useStickyHeader: false,
+        useStickyHeader: true,
+        // useShrinkHeader: false,
         // useSocialLinks: true,
         // useColorMode: true,
         // useKatex: false,
@@ -90,7 +81,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#cccccc`,
         display: `minimal-ui`,
-        icon: `content/assets/hyperobjekt-site-icon.png`, // This path is relative to the root of the site.
+        icon: `content/assets/site-icon.png`, // This path is relative to the root of the site.
       },
     },
   ],

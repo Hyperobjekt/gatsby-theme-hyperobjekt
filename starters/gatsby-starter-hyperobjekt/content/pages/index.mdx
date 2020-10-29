@@ -1,8 +1,14 @@
+import Colors from "../../src/components/colors"
+
 <SEO title="Home" />
 
-## Markdown Tests
+## Markdown Tests / Styles
 
-The following section provides some formatting tests the themes and starters. If you are changing styles using Theme-UI you should be able to quickly see changes on this page. Most common markdown elements are included and at the end there is an example blog post to test.
+The following section provides some formatting tests for default content rendered with markdown.
+
+### Colors
+
+<Colors />
 
 ### Headers
 
@@ -29,28 +35,25 @@ To indicate a span of code, wrap it with backtick quotes (`` ` ``).
 Unlike a pre-formatted code block, a `code span` indicates code within a
 normal paragraph.
 
+Sample line of code:
+
 ```
-This is a simple code block.
+<iframe href="example.html></iframe>
 ```
 
-```jsx
-//This is a jsx code block.
-import awesome from "radical"
+Sample block of code:
 
-const Super = () => {
-  return (
-    <div>
-      <h1>Super Awesome</h1>
-    </div>
-  )
+```js
+module.exports = (themeOptions) => {
+  const contentPath = themeOptions.contentPath || `content/pages`
+  const assetPath = themeOptions.assetPath || `content/assets`
+
+  return {
+    contentPath,
+    assetPath,
+  }
 }
-
-export default Super
 ```
-
-### Embeds
-
-MDX embeds powered by [gatsby-mdx-embed](https://gatsby-mdx-embed.netlify.app/). Support for automatically including Twitter, Youtube, Instagram and other social media directly in your markdown.
 
 ### Blockquotes
 
@@ -63,22 +66,47 @@ MDX embeds powered by [gatsby-mdx-embed](https://gatsby-mdx-embed.netlify.app/).
 
 ### Links
 
-This is [an example](https://www.erichowey.dev) link.
+This is [an example](https://www.google.com) link.
 
-[This link](https://www.erichowey.dev) has no title attribute and is in a longer set of words. Let's see how long I can type before I get bored and stop typing. Here is me filling in some more spaces. And wow we have [encountered another link](https://www.erichowey.dev) in the wild!
+[This link](https://www.google.com) has no title attribute and is in a longer set of words. Let's see how long I can type before I get bored and stop typing. Here is me filling in some more spaces. And wow we have [encountered another link](https://www.google.com) in the wild!
 
-### Images
+### Buttons
 
-![Alt Image Text 1](../assets/image1.jpg)
+<button>Sample Button</button>
 
 ### Tables
 
-| Heading   | Another Heading | More Heading                          |
-| --------- | --------------- | ------------------------------------- |
-| Something | 124891          | Default is volcanoes.                 |
-| Strange   | 1098731         | Some longer text to test how it looks |
-| Is        | 1874            | Oranges are better than apples.       |
-| Happening | 912641969       | To the moon and back.                 |
+<table>
+  <thead>
+    <tr>
+      <th>Heading</th>
+      <th>Another Heading</th>
+      <th>More Heading</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Something</td>
+      <td>124891</td>
+      <td>Default is volcanoes.</td>
+    </tr>
+    <tr>
+      <td>Strange</td>
+      <td>1098731</td>
+      <td>Some longer text to test how it looks</td>
+    </tr>
+    <tr>
+      <td>Is</td>
+      <td>1874</td>
+      <td>Oranges are better than apples.</td>
+    </tr>
+    <tr>
+      <td>Happening</td>
+      <td>912641969</td>
+      <td>To the moon and back.</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Lists
 
@@ -106,46 +134,3 @@ _Some more text in italics to get a better feel for how it can look. Here it goe
 **double asterisks**
 
 **Some more BOLD text. This really draws attention to it and helps to give a feel for what it looks like just a bit longer.**
-
-### Anchor 1
-
-This section is used to test [react-scroll](https://www.npmjs.com/package/react-scroll). It also gives the feel for the flow of some text and an image, _similar to a blog post_.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus
-vestibulum aliquam. Duis sapien est, elementum sed ultrices nec, pharetra et
-magna. Pellentesque quis nulla et neque fringilla ornare eget mollis nisi.
-Aliquam erat volutpat. Donec tempus porttitor mi, ut semper urna posuere
-nec. In in turpis in dui consequat viverra.
-
-![Alt Image Text 1](../assets/image1.jpg)
-
-In dictum rutrum purus, aliquet dapibus ante. Nullam non felis at ex consectetur laoreet vitae eu dui. Curabitur orci massa, tincidunt quis elementum a, maximus non erat. Curabitur semper turpis a nibh hendrerit porttitor. Morbi accumsan iaculis orci in molestie. Donec at elementum nisl. Phasellus tellus nulla, dapibus vitae gravida sed, euismod eget urna.
-
-Cras at odio bibendum leo dictum porta. Curabitur mattis elementum neque id tristique. Nam laoreet sed quam bibendum viverra. Aenean sit amet [suscipit](https://www.google.com) sem. Mauris convallis ex non nibh interdum pulvinar. Suspendisse potenti. Vivamus odio velit, luctus non interdum at, interdum nec tellus. Fusce non consequat erat, in vestibulum ligula. Praesent eu lacus non mi accumsan faucibus.
-
-> Here is an amazing block quote. Transcendent information that will inspire some amazing life changes for you.
-
-Nullam sit amet magna leo. Suspendisse scelerisque pellentesque gravida. Nullam congue rhoncus tellus dapibus aliquam. Ut in risus odio. Ut vel odio laoreet, elementum ipsum id, elementum elit. Nunc convallis ex mi, at laoreet sem mattis eu. [Aenean tempor tincidunt](https://www.google.com) hendrerit. Proin nec sem mollis, viverra ligula a, sodales dolor. Nullam mauris massa, cursus pulvinar pretium sed, placerat ut nisl. Nunc congue porta augue vitae feugiat. Quisque placerat libero at lectus dictum, at mattis nisi consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat.
-
-**Interesting Sub-heading**
-
-Sed maximus urna malesuada, tempor sem semper, iaculis orci. Vestibulum augue risus, cursus volutpat orci sed, rutrum efficitur eros. Praesent vel orci id ex venenatis egestas. Morbi ac venenatis nulla. Vivamus lobortis volutpat lacus sed consequat. Aliquam in porta purus. Vestibulum scelerisque lobortis nibh sed lobortis.
-
-Phasellus fermentum vestibulum nibh, a volutpat est sollicitudin ut. Proin eget justo viverra, mattis tortor at, sodales quam. Donec lacinia, diam ut iaculis varius, nibh ante pharetra turpis, quis tristique odio arcu convallis leo. Donec varius tellus ac fringilla rhoncus. Quisque vitae tristique turpis. Integer blandit lacinia neque at egestas. Maecenas ultrices nisi bibendum hendrerit blandit. Donec vitae libero quis tortor luctus porttitor non at nulla. Nam eget est ac mi ullamcorper pellentesque sit amet ac eros.
-
-```jsx
-//This is a jsx code block.
-import awesome from "radical"
-
-const Super = () => {
-  return (
-    <div>
-      <h1>Super Awesome</h1>
-    </div>
-  )
-}
-
-export default Super
-```
-
-Quisque at ornare massa, nec accumsan justo. Praesent auctor at ipsum vitae sodales. Cras quis posuere lorem. Cras sed vehicula nisl. Aliquam accumsan posuere nulla eget tristique.

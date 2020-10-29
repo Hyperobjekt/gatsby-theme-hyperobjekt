@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useSiteMetadata } from "./use-site-metadata"
-import { useHyperobjektConfig } from "./use-hyperobjekt-config"
+import { useSiteConfig } from "./use-site-config"
 import { useLocation } from "@reach/router"
 
 const SEO = ({
@@ -23,7 +23,7 @@ const SEO = ({
     siteUrl,
     seoImage,
   } = useSiteMetadata()
-  const { useKatex } = useHyperobjektConfig()
+  const { useKatex } = useSiteConfig()
   const location = useLocation()
   const seoTitle = propTitle || title
   const seoDescription = propDescription || description

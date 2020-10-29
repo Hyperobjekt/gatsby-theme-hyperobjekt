@@ -1,0 +1,20 @@
+name: github
+  repo: Hyperobjekt/gatsby-starter-hyperobjekt
+  branch: staging
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - label: "Pages"
+    name: "pages"
+    editor:
+      preview: false
+    preview_path: /
+    files:
+      - label: "Home"
+        name: "home"
+        file: "content/pages/index.mdx"
+        identifier_field: name
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }

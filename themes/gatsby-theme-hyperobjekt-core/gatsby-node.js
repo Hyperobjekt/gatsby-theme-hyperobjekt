@@ -79,8 +79,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
   `
   // Type definition for Hyperobjekt Config
-  const hyperobjektConfigTypeDef = `
-  type HyperobjektConfig implements Node {
+  const siteConfigTypeDef = `
+  type siteConfig implements Node {
     contentPath: String!
     assetPath: String!
     displaySiteLogo: Boolean!
@@ -90,6 +90,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     invertSiteLogo: Boolean!
     mobileMenuBreakpoint: String!
     useStickyHeader: Boolean!
+    useShrinkHeader: Boolean!
     useSocialLinks: Boolean!
     useColorMode: Boolean!
     footerContentLocation: String!
@@ -97,8 +98,8 @@ exports.createSchemaCustomization = ({ actions }) => {
   }
   `
   createTypes(subMenuTypeDefs)
-  createTypes(hyperobjektConfigTypeDef)
-  // createTypes(`type HyperobjektConfig implements Node {
+  createTypes(siteConfigTypeDef)
+  // createTypes(`type siteConfig implements Node {
   //   contentPath: String!
   //   assetPath: String!
   //   displaySiteLogo: Boolean!
@@ -108,6 +109,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   //   invertSiteLogo: Boolean!
   //   mobileMenuBreakpoint: String!
   //   useStickyHeader: Boolean!
+  //   useShrinkHeader: Boolean!
   //   useSocialLinks: Boolean!
   //   useColorMode: Boolean!
   //   footerContentLocation: String!
@@ -125,8 +127,9 @@ exports.sourceNodes = (
     displaySiteLogoMobile = true,
     displaySiteTitleMobile = true,
     invertSiteLogo = false,
-    mobileMenuBreakpoint = "768px",
+    mobileMenuBreakpoint = 768,
     useStickyHeader = false,
+    useShrinkHeader = false,
     useSocialLinks = true,
     useColorMode = true,
     footerContentLocation = "left",
@@ -134,7 +137,7 @@ exports.sourceNodes = (
   }
 ) => {
   // create garden data from plugin config
-  const hyperobjektConfigFieldData = {
+  const siteConfigFieldData = {
     contentPath,
     assetPath,
     displaySiteLogo,
@@ -144,21 +147,22 @@ exports.sourceNodes = (
     invertSiteLogo,
     mobileMenuBreakpoint,
     useStickyHeader,
+    useShrinkHeader,
     useSocialLinks,
     useColorMode,
     footerContentLocation,
     useKatex,
   }
   createNode({
-    ...hyperobjektConfigFieldData,
-    id: `gatsby-theme-hyperobjekt-config`,
+    ...siteConfigFieldData,
+    id: `gatsby-theme-site-config`,
     parent: null,
     children: [],
     internal: {
-      type: `HyperobjektConfig`,
-      contentDigest: createContentDigest(hyperobjektConfigFieldData),
-      content: JSON.stringify(hyperobjektConfigFieldData),
-      description: `Hyperobjekt Config`,
+      type: `SiteConfig`,
+      contentDigest: createContentDigest(siteConfigFieldData),
+      content: JSON.stringify(siteConfigFieldData),
+      description: `Site Config`,
     },
   })
 }

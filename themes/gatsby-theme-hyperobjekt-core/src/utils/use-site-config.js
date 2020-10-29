@@ -1,9 +1,9 @@
 import { useStaticQuery, graphql } from "gatsby"
-export const useHyperobjektConfig = () => {
-  const { hyperobjektConfig } = useStaticQuery(
+export const useSiteConfig = () => {
+  const { siteConfig } = useStaticQuery(
     graphql`
       query {
-        hyperobjektConfig {
+        siteConfig {
           contentPath
           assetPath
           displaySiteLogo
@@ -20,5 +20,5 @@ export const useHyperobjektConfig = () => {
       }
     `
   )
-  return hyperobjektConfig
+  return siteConfig
 }

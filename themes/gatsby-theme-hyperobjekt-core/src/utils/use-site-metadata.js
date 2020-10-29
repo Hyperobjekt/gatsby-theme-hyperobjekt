@@ -3,14 +3,14 @@ export const useSiteMetadata = () => {
   const data = useStaticQuery(
     graphql`
       query SiteMetaData {
-        logo: file(name: { eq: "hyperobjekt-site-logo" }) {
+        logo: file(name: { eq: "site-logo" }) {
           childImageSharp {
             fluid(maxHeight: 512) {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        seoImage: file(name: { eq: "hyperobjekt-site-social" }) {
+        seoImage: file(name: { eq: "site-social" }) {
           childImageSharp {
             resize(width: 1024) {
               src

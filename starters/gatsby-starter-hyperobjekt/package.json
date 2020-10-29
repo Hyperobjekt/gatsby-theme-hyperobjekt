@@ -5,13 +5,15 @@
   "private": true,
   "author": "Lane Olson <laneolson@gmail.com>",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "gatsby": "^2.24.58",
     "gatsby-theme-hyperobjekt-core": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
-  "devDependencies": {
-    "prettier": "^2.0.5"
+  "resolutions": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "keywords": [
     "gatsby",

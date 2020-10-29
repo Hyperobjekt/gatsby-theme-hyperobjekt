@@ -14,6 +14,7 @@ This acts as a core theme on which all other themes are based. It houses a basic
 | `displaySiteTitleMobile` | true or false                             | Defaults to true, controls whether the site title is displayed at the mobile breakpoint     |
 | `invertLogo`             | true or false                             | Defaults to false, controls whether the logo is inverted when the mobile menu is open       |
 | `useStickyHeader`        | true or false                             | Defaults to false, controls whether the header is sticky or static                          |
+| `useShrinkHeader`        | true or false                             | Defaults to false, controls whether the header shrinks on scroll                            |
 | `useSocialLinks`         | true or false                             | Defaults to true, controls whether the social links are displayed or not                    |
 | `useColorMode`           | true or false                             | Defaults to true, controls whether the dark mode toggle is available.                       |
 | `useKatex`               | true or false                             | Defaults to false, enables gatsby-remark-katex for displaying math equations.               |

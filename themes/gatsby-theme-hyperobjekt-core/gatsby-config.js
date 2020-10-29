@@ -114,12 +114,19 @@ module.exports = (themeOptions) => {
       {
         resolve: `gatsby-theme-material-ui`,
         options: {
-          stylesConfig: {
-            // disableAutoprefixing: true,
-            // disableMinification: true
+          webFontsConfig: {
+            fonts: {
+              google: [
+                {
+                  family: `Montserrat`,
+                  variants: [`300`, `400`, `500`],
+                },
+              ],
+            },
           },
         },
       },
+      `gatsby-plugin-emotion`,
       `gatsby-plugin-mdx-embed`,
       `gatsby-plugin-sitemap`,
       `gatsby-plugin-robots-txt`,
@@ -130,6 +137,7 @@ module.exports = (themeOptions) => {
       `gatsby-plugin-sharp`,
       `gatsby-plugin-catch-links`,
       `gatsby-plugin-offline`,
+      `gatsby-plugin-netlify-cms`,
     ].filter(Boolean),
   }
 }

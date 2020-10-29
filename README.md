@@ -1,5 +1,13 @@
 # Gatsby Theme Hyperobjekt
 
+## Getting Started
+
+This is a monorepo managed with lerna, install lerna using:
+
+```
+npm i -g lerna
+```
+
 ## List of themes
 
 TODO...
