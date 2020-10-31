@@ -11,7 +11,6 @@ const MenuCollapsed = (props) => {
   const { menuLinks } = useSiteMetadata()
   const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
 
-  console.log(menuLinks)
   function handleMenuOpen() {
     setIsNavOpen(true)
   }

@@ -1,22 +1,20 @@
-import { createMuiTheme, ThemeProvider } from "@material-ui/core"
-import React, { useContext } from "react"
-import theme from "../theme"
+import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core"
+import { deepmerge } from "@material-ui/utils"
+import React, { useContext, useMemo } from "react"
 import { SiteContext } from "../utils/site-context"
+import theme from "../theme"
 const SiteContainer = ({ children }) => {
-  const { isDarkMode } = useContext(SiteContext)
-  const adjustedTheme = useMemo(
-    () =>
-      createMuiTheme(theme, {
-        palette: { type: !isDarkMode ? "dark" : "light" },
-      }),
-    [theme, isDarkMode]
-  )
-  console.log("theme", adjustedTheme, adjustedTheme.palette.type)
-  return (
-    <div>
-      <ThemeProvider theme={adjustedTheme}>{children}</ThemeProvider>
-    </div>
-  )
+  // const { isDarkMode } = useContext(SiteContext)
+  // const adjustedTheme = useMemo(() => {
+  //   const updated = createMuiTheme({
+  //     palette: {
+  //       type: isDarkMode ? "dark" : "light",
+  //     },
+  //   })
+  //   return deepmerge(updated, theme(updated))
+  // }, [isDarkMode])
+  // console.log("theme wrapper", adjustedTheme, adjustedTheme.palette.type)
+  return <div>{children}</div>
 }
 
 export default SiteContainer

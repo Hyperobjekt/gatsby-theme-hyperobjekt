@@ -3,14 +3,13 @@ import React, { useContext, useState } from "react"
 import PropTypes from "prop-types"
 import { AppBar, useTheme, withStyles } from "@material-ui/core"
 import Branding from "./branding"
-import MobileMenu from "./menu-mobile"
-import DesktopMenu from "./menu-desktop"
+import DesktopNavigation from "./nav-desktop"
+import NavigationIcons from "./nav-icons"
 import HeaderBar from "./header-bar"
 import { SiteContext } from "../../utils/site-context"
 import { useSiteConfig } from "../../utils/use-site-config"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import clsx from "clsx"
-import DarkModeToggle from "./dark-mode-toggle"
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -23,6 +22,7 @@ export const styles = (theme) => ({
   /* Styles applied to the branding component */
   branding: {
     color: theme.palette.primary.contrastText,
+    marginRight: "auto",
   },
   title: {},
   logo: {},
@@ -60,9 +60,8 @@ const SiteHeader = ({ classes, ...props }) => {
             logo: classes.logo,
           }}
         />
-
-        {useMobileMenu ? <MobileMenu /> : <DesktopMenu />}
-        {useDarkMode && <DarkModeToggle />}
+        {!useMobileMenu && <DesktopNavigation />}
+        <NavigationIcons />
       </HeaderBar>
     </AppBar>
   )
