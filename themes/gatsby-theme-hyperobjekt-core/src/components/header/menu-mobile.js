@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { IconButton } from "@material-ui/core"
 import { MenuIcon } from "./menu-icon"
-import { NavContext } from "../../utils/nav-context"
+import { SiteContext } from "../../utils/site-context"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
 import Navigation from "./nav"
 import NavDrawer from "./nav-drawer"
@@ -9,7 +9,7 @@ import NavDrawer from "./nav-drawer"
 const MenuCollapsed = (props) => {
   // const theme = useTheme()
   const { menuLinks } = useSiteMetadata()
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext)
+  const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
 
   console.log(menuLinks)
   function handleMenuOpen() {

@@ -13,8 +13,9 @@ export const useSiteConfig = () => {
           invertSiteLogo
           mobileMenuBreakpoint
           useStickyHeader
+          useShrinkHeader
           useSocialLinks
-          useColorMode
+          useDarkMode
           footerContentLocation
         }
       }

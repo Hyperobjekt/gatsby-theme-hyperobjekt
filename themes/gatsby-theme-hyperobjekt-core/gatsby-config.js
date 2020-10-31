@@ -114,16 +114,7 @@ module.exports = (themeOptions) => {
       {
         resolve: `gatsby-theme-material-ui`,
         options: {
-          webFontsConfig: {
-            fonts: {
-              google: [
-                {
-                  family: `Montserrat`,
-                  variants: [`300`, `400`, `500`],
-                },
-              ],
-            },
-          },
+          webFontsConfig: options.webFontsConfig,
         },
       },
       `gatsby-plugin-emotion`,
@@ -137,7 +128,6 @@ module.exports = (themeOptions) => {
       `gatsby-plugin-sharp`,
       `gatsby-plugin-catch-links`,
       `gatsby-plugin-offline`,
-      `gatsby-plugin-netlify-cms`,
     ].filter(Boolean),
   }
 }

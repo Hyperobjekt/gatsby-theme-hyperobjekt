@@ -9,6 +9,8 @@ export const useSiteMetadata = () => {
               ...GatsbyImageSharpFluid
             }
           }
+          extension
+          publicURL
         }
         seoImage: file(name: { eq: "site-social" }) {
           childImageSharp {
@@ -47,7 +49,12 @@ export const useSiteMetadata = () => {
       }
     `
   )
-  const logo = data.logo.childImageSharp.fluid
+  const { logo } = data
+  const logoImage = logo
+    ? !logo.childImageSharp && logo.extension === "svg"
+      ? data.logo.publicURL // svg logo, return public url
+      : data.logo.childImageSharp.fluid // png / jpg logo, return base64 output for gatsby-image
+    : null // no logo
   const seoImage = data.seoImage.childImageSharp.resize
   const metaData = data.site.siteMetadata
   const twitterLink = data.site.siteMetadata.socialLinks
@@ -62,6 +69,6 @@ export const useSiteMetadata = () => {
         .replace("https://www.twitter.com/" && "https://twitter.com/", "@")
     : "Unknown"
 
-  const allData = { ...metaData, logo, seoImage, twitterUsername }
+  const allData = { ...metaData, logo: logoImage, seoImage, twitterUsername }
   return allData
 }

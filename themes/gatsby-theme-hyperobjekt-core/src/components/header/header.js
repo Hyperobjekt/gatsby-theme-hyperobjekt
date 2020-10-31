@@ -1,24 +1,79 @@
 // This is a placeholder for latent shadowing in sibling themes
-import React, { useContext } from "react"
-import { AppBar } from "@material-ui/core"
+import React, { useContext, useState } from "react"
+import PropTypes from "prop-types"
+import { AppBar, useTheme, withStyles } from "@material-ui/core"
 import Branding from "./branding"
 import MobileMenu from "./menu-mobile"
 import DesktopMenu from "./menu-desktop"
 import HeaderBar from "./header-bar"
-import { NavContext } from "../../utils/nav-context"
+import { SiteContext } from "../../utils/site-context"
 import { useSiteConfig } from "../../utils/use-site-config"
+import { useScrollPosition } from "@n8tb1t/use-scroll-position"
+import clsx from "clsx"
+import DarkModeToggle from "./dark-mode-toggle"
 
-const SiteHeader = (props) => {
-  const { useStickyHeader } = useSiteConfig()
-  const { useMobileMenu } = useContext(NavContext)
+export const styles = (theme) => ({
+  /* Styles applied to the root element. */
+  appBar: {
+    background: theme.palette.primary.main,
+    transition: `height ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  /* Styles applied to the toolbar component. */
+  headerBar: {},
+  /* Styles applied to the branding component */
+  branding: {
+    color: theme.palette.primary.contrastText,
+  },
+  title: {},
+  logo: {},
+})
+
+const SiteHeader = ({ classes, ...props }) => {
+  // state indicating whether header is condensed
+  const [shrink, setShrink] = useState(false)
+  const { useStickyHeader, useShrinkHeader, useDarkMode } = useSiteConfig()
+  const { useMobileMenu } = useContext(SiteContext)
+  const {
+    layout: { headerHeight, shrinkHeaderHeight, shrinkOffset },
+  } = useTheme()
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    // ignore scroll position if no scroll shrink
+    if (!useShrinkHeader || (!shrinkOffset && shrinkOffset !== 0)) return
+    // check if conditions are met and shrink header
+    currPos.y > shrinkOffset && shrink && setShrink(false)
+    currPos.y < shrinkOffset && !shrink && setShrink(true)
+  })
+
   return (
-    <AppBar position={useStickyHeader ? "sticky" : "static"} {...props}>
-      <HeaderBar>
-        <Branding />
+    <AppBar
+      className={clsx("header", classes.appBar)}
+      position={useStickyHeader ? "sticky" : "static"}
+      style={{ height: shrink ? shrinkHeaderHeight : headerHeight }}
+      {...props}
+    >
+      <HeaderBar className={clsx("header__toolbar", classes.headerBar)}>
+        <Branding
+          classes={{
+            root: clsx("header__branding", classes.branding),
+            title: classes.title,
+            logo: classes.logo,
+          }}
+        />
+
         {useMobileMenu ? <MobileMenu /> : <DesktopMenu />}
+        {useDarkMode && <DarkModeToggle />}
       </HeaderBar>
     </AppBar>
   )
 }
 
-export default SiteHeader
+SiteHeader.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(SiteHeader)

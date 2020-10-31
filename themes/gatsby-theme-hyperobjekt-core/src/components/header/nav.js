@@ -1,11 +1,14 @@
 import React, { useContext } from "react"
+import PropTypes from "prop-types"
 import clsx from "clsx"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
 import { Link } from "gatsby-theme-material-ui"
-import { List, ListItem, makeStyles } from "@material-ui/core"
-import { NavContext } from "../../utils/nav-context"
+import { List, ListItem, withStyles } from "@material-ui/core"
+import { SiteContext } from "../../utils/site-context"
 import SubNavigation from "./nav-submenu"
-const useStyles = makeStyles((theme) => {
+import NavArrow from "./nav-arrow"
+
+const styles = (theme) => {
   return {
     root: {
       flex: "0 1",
@@ -24,12 +27,17 @@ const useStyles = makeStyles((theme) => {
       "&.nav--desktop $subMenu": {
         position: "absolute",
         top: "100%",
-        left: 0,
-        minWidth: 240,
+        left: "50%",
+        minWidth: 200,
         opacity: 0,
+        marginLeft: 0,
+        transform: "translate3d(-50%, 0, 0)",
         pointerEvents: "none",
         background: theme.palette.primary.main,
         transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+      },
+      "&.nav--desktop $link:hover, &.nav--desktop $subMenuLink:hover": {
+        background: theme.palette.primary.dark,
       },
     },
     list: {},
@@ -45,18 +53,23 @@ const useStyles = makeStyles((theme) => {
       },
     },
     link: {
+      display: "flex",
+      alignItems: "center",
       padding: theme.spacing(2),
     },
-    subMenu: {},
-    subMenuListItem: {},
-    subMenuLink: {},
+    subMenu: { marginLeft: theme.spacing(2) },
+    subMenuListItem: { padding: 0 },
+    subMenuLink: {
+      display: "flex",
+      flex: 1,
+      padding: theme.spacing(2),
+    },
   }
-})
+}
 
-const Navigation = ({ className, ...props }) => {
+const Navigation = ({ classes, className, ...props }) => {
   const { menuLinks } = useSiteMetadata()
-  const { useMobileMenu } = useContext(NavContext)
-  const classes = useStyles()
+  const { useMobileMenu } = useContext(SiteContext)
   return (
     <nav
       className={clsx(
@@ -82,6 +95,7 @@ const Navigation = ({ className, ...props }) => {
               to={menuItem.link}
             >
               {menuItem.name}
+              {menuItem.subMenu.length > 0 && <NavArrow />}
             </Link>
             {menuItem.subMenu.length > 0 && (
               <SubNavigation
@@ -100,4 +114,8 @@ const Navigation = ({ className, ...props }) => {
   )
 }
 
-export default Navigation
+Navigation.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(Navigation)

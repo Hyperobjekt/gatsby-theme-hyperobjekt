@@ -59,17 +59,32 @@ module.exports = {
         contentPath: `content/pages`,
         assetPath: `content/assets`,
         // displaySiteLogo: true,
-        // displaySiteTitle: true,
+        displaySiteTitle: false,
         // displaySiteLogoMobile: true,
-        // displaySiteTitleMobile: true,
+        displaySiteTitleMobile: false,
         // invertLogo: false,
         useStickyHeader: true,
-        // useShrinkHeader: false,
+        useShrinkHeader: true,
         // useSocialLinks: true,
-        // useColorMode: true,
+        // useDarkMode: true,
         // useKatex: false,
         // footerContentLocation: "left", // "left", "right", "center"
         // remarkImagesWidth: 1440,
+        // mobileMenuBreakpoint: 768,
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Montserrat`,
+                variants: [`300`, `400`, `500`],
+              },
+              {
+                family: `Nunito`,
+                variants: [`300`, `400`, `500`],
+              },
+            ],
+          },
+        },
       },
     },
     {
@@ -82,6 +97,12 @@ module.exports = {
         theme_color: `#cccccc`,
         display: `minimal-ui`,
         icon: `content/assets/site-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `./src/cms/cms.js`,
       },
     },
   ],

@@ -1,10 +1,12 @@
 import { Toolbar, withStyles } from "@material-ui/core"
 
-const HeaderBar = withStyles((theme) => ({
+const styles = {
   root: {
     alignItems: "stretch",
     justifyContent: "space-between",
+    flex: 1,
+    minHeight: 44,
   },
-}))(Toolbar)
+}
 
-export default HeaderBar
+export default withStyles(styles)(Toolbar)

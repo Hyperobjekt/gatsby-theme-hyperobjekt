@@ -4,8 +4,11 @@ import React from "react"
 const Container = styled(`div`)(({ theme }) => {
   return {
     maxWidth: theme.layout.contentWidth,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     margin: "auto",
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(3),
+    },
   }
 })
 

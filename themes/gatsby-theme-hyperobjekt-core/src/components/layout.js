@@ -8,7 +8,7 @@ import ContentContainer from "./content-container"
 import Footer from "./footer"
 
 const SiteLayout = ({ children }) => {
-  // const [isHome, setIsHome] = useContext(HomeContext) // eslint-disable-line
+  // const {isHome, setIsHome} = useContext(SiteContext) // eslint-disable-line
   // const location = useLocation()
   // const home = location.pathname === "/"
   // useEffect(() => {

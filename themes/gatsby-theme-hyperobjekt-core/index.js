@@ -1,7 +1,6 @@
 export { default as SEO } from "./src/utils/seo"
 export { default as Layout } from "./src/components/layout"
-export { NavContext } from "./src/utils/nav-context"
-export { HomeContext } from "./src/utils/home-context"
+export { SiteContext } from "./src/utils/site-context"
 export { useSiteConfig } from "./src/utils/use-site-config"
 export { useSiteMetadata } from "./src/utils/use-site-metadata"
 export { useHasMounted } from "./src/utils/use-has-mounted"

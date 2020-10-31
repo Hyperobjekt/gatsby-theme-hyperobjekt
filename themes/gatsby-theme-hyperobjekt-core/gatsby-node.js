@@ -92,7 +92,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     useStickyHeader: Boolean!
     useShrinkHeader: Boolean!
     useSocialLinks: Boolean!
-    useColorMode: Boolean!
+    useDarkMode: Boolean!
     footerContentLocation: String!
     useKatex: Boolean!
   }
@@ -111,7 +111,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   //   useStickyHeader: Boolean!
   //   useShrinkHeader: Boolean!
   //   useSocialLinks: Boolean!
-  //   useColorMode: Boolean!
+  //   useDarkMode: Boolean!
   //   footerContentLocation: String!
   //   useKatex: Boolean!
   // }`)
@@ -131,7 +131,7 @@ exports.sourceNodes = (
     useStickyHeader = false,
     useShrinkHeader = false,
     useSocialLinks = true,
-    useColorMode = true,
+    useDarkMode = true,
     footerContentLocation = "left",
     useKatex = false,
   }
@@ -149,7 +149,7 @@ exports.sourceNodes = (
     useStickyHeader,
     useShrinkHeader,
     useSocialLinks,
-    useColorMode,
+    useDarkMode,
     footerContentLocation,
     useKatex,
   }
