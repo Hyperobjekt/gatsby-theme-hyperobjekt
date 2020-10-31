@@ -17,7 +17,7 @@ const darkTheme = {
     },
     background: {
       default: "#122039",
-      paper: "#021029",
+      paper: "#122039",
     },
   },
   overrides: {
