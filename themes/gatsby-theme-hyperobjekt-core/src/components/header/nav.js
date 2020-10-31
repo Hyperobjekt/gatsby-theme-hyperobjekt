@@ -37,7 +37,7 @@ const styles = (theme) => {
         transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
       },
       "&.nav--desktop $link:hover, &.nav--desktop $subMenuLink:hover": {
-        background: theme.palette.primary.dark,
+        background: theme.palette.action.hover,
       },
     },
     list: {},

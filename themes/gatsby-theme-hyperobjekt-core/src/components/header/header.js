@@ -31,7 +31,7 @@ export const styles = (theme) => ({
 const SiteHeader = ({ classes, ...props }) => {
   // state indicating whether header is condensed
   const [shrink, setShrink] = useState(false)
-  const { useStickyHeader, useShrinkHeader, useDarkMode } = useSiteConfig()
+  const { useStickyHeader, useShrinkHeader } = useSiteConfig()
   const { useMobileMenu } = useContext(SiteContext)
   const {
     layout: { headerHeight, shrinkHeaderHeight, shrinkOffset },

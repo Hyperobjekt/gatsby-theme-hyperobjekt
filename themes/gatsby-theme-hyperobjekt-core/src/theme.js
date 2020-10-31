@@ -1,15 +1,9 @@
-import { blue, pink } from "@material-ui/core/colors"
-
 const theme = {
-  palette: {
-    primary: {
-      light: blue[400],
-      main: blue[500],
-      dark: blue[600],
-    },
-  },
-  typography: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
+  layout: {
+    contentWidth: 768,
+    headerHeight: 80,
+    shrinkHeaderHeight: 56,
+    shrinkOffset: -32,
   },
 }
 
