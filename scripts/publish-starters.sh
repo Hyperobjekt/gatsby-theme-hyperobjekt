@@ -5,8 +5,6 @@ FOLDER="starters"
 BASE=$(pwd)
 COMMIT_MESSAGE=$(git log -1 --pretty=%B)
 
-git config --global user.email "laneolson@gmail.com"
-git config --global user.name "$GITHUB_USERNAME"
 
 for folder in $FOLDER/*; do
   [ -d "$folder" ] || continue # only directories
