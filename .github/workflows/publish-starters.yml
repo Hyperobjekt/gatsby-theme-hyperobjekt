@@ -8,26 +8,15 @@ on:
   push:
     branches: [main]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  master:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install jq
-
-      # Runs a set of commands using the runners shell
-      - name: Publish starter to separate repo
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          chmod +x ./scripts/publish-starters.sh
-          ./scripts/publish-starters.sh
+      - uses: actions/checkout@master
+      - name: publish:starters
+        uses: johno/actions-push-subdirectories@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: starters Hyperobjekt
