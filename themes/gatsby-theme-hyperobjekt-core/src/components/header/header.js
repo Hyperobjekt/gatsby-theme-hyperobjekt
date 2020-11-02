@@ -1,11 +1,10 @@
 // This is a placeholder for latent shadowing in sibling themes
 import React, { useContext, useState } from "react"
 import PropTypes from "prop-types"
-import { AppBar, useTheme, withStyles } from "@material-ui/core"
+import { AppBar, Toolbar, useTheme, withStyles } from "@material-ui/core"
 import Branding from "./branding"
 import DesktopNavigation from "./nav-desktop"
 import NavigationIcons from "./nav-icons"
-import HeaderBar from "./header-bar"
 import { SiteContext } from "../../utils/site-context"
 import { useSiteConfig } from "../../utils/use-site-config"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
@@ -13,12 +12,33 @@ import clsx from "clsx"
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
-  appBar: {
+  root: {
     background: theme.palette.primary.main,
     transition: `height ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "stretch",
+    padding: `0 ${theme.spacing(2)}px`,
+    height: theme.layout.headerHeight,
+    [theme.breakpoints.up("sm")]: {
+      padding: `0 ${theme.spacing(3)}px`,
+    },
   },
   /* Styles applied to the toolbar component. */
-  headerBar: {},
+  toolbar: {
+    maxWidth: theme.layout.headerMaxWidth || 960,
+    alignItems: "stretch",
+    justifyContent: "space-between",
+    flex: 1,
+    minHeight: 44,
+    padding: 0,
+  },
+  /* Styles applied when the header is "sticky" after scrolling */
+  stuck: {},
+  /* Styles applied when the header is shrunk */
+  shrunk: {
+    height: theme.layout.shrinkHeaderHeight,
+  },
   /* Styles applied to the branding component */
   branding: {
     color: theme.palette.primary.contrastText,
@@ -28,31 +48,51 @@ export const styles = (theme) => ({
   logo: {},
 })
 
+/**
+ * filter function for header links
+ * @param {*} link
+ */
+export const headerLinkFilter = (link) =>
+  ["all", "header"].indexOf(link.location) > -1
+
 const SiteHeader = ({ classes, ...props }) => {
   // state indicating whether header is condensed
   const [shrink, setShrink] = useState(false)
+  // state indicating if the header is "stuck"
+  const [stuck, setStuck] = useState(false)
+  // pull header configuration
   const { useStickyHeader, useShrinkHeader } = useSiteConfig()
   const { useMobileMenu } = useContext(SiteContext)
   const {
-    layout: { headerHeight, shrinkHeaderHeight, shrinkOffset },
+    layout: { shrinkOffset },
   } = useTheme()
-
   useScrollPosition(({ prevPos, currPos }) => {
-    // ignore scroll position if no scroll shrink
-    if (!useShrinkHeader || (!shrinkOffset && shrinkOffset !== 0)) return
-    // check if conditions are met and shrink header
-    currPos.y > shrinkOffset && shrink && setShrink(false)
-    currPos.y < shrinkOffset && !shrink && setShrink(true)
+    // only shrink header if proper settings are defined
+    if (useShrinkHeader && (shrinkOffset || shrinkOffset === 0)) {
+      // check if conditions are met and shrink header
+      currPos.y >= shrinkOffset && shrink && setShrink(false)
+      currPos.y < shrinkOffset && !shrink && setShrink(true)
+    }
+    // only sticky header if proper settings are defined
+    if (useStickyHeader) {
+      // check if conditions are met and shrink header
+      currPos.y >= 0 && stuck && setStuck(false)
+      currPos.y < 0 && !stuck && setStuck(true)
+    }
   })
 
   return (
     <AppBar
-      className={clsx("header", classes.appBar)}
+      className={clsx("header", classes.root, {
+        "header--shrunk": shrink,
+        [classes.shrunk]: shrink,
+        "header--stuck": stuck,
+        [classes.stuck]: stuck,
+      })}
       position={useStickyHeader ? "sticky" : "static"}
-      style={{ height: shrink ? shrinkHeaderHeight : headerHeight }}
       {...props}
     >
-      <HeaderBar className={clsx("header__toolbar", classes.headerBar)}>
+      <Toolbar className={clsx("header__toolbar", classes.toolbar)}>
         <Branding
           classes={{
             root: clsx("header__branding", classes.branding),
@@ -60,9 +100,11 @@ const SiteHeader = ({ classes, ...props }) => {
             logo: classes.logo,
           }}
         />
-        {!useMobileMenu && <DesktopNavigation />}
+        {!useMobileMenu && (
+          <DesktopNavigation subMenu filter={headerLinkFilter} />
+        )}
         <NavigationIcons />
-      </HeaderBar>
+      </Toolbar>
     </AppBar>
   )
 }
@@ -75,4 +117,4 @@ SiteHeader.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(SiteHeader)
+export default withStyles(styles, { name: "HypHeader" })(SiteHeader)

@@ -1,64 +1,42 @@
-import React, { useContext } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
 import { Link } from "gatsby-theme-material-ui"
 import { List, ListItem, withStyles } from "@material-ui/core"
-import { SiteContext } from "../../utils/site-context"
 import SubNavigation from "./nav-submenu"
 import NavArrow from "./nav-arrow"
 
-const styles = (theme) => {
+export const styles = (theme) => {
   return {
+    /* Styles applied to the root element. */
     root: {
       flex: "0 1",
       display: "flex",
       alignItems: "stretch",
-      "&.nav--desktop $list": {
-        display: "flex",
-      },
-      "&.nav--desktop $link, &.nav--desktop $subMenuLink": {
-        color: theme.palette.primary.contrastText,
-        whiteSpace: "nowrap",
-      },
-      "&.nav--desktop $link.active": {
-        fontWeight: "bold",
-      },
-      "&.nav--desktop $subMenu": {
-        position: "absolute",
-        top: "100%",
-        left: "50%",
-        minWidth: 200,
-        opacity: 0,
-        marginLeft: 0,
-        transform: "translate3d(-50%, 0, 0)",
-        pointerEvents: "none",
-        background: theme.palette.primary.main,
-        transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
-      },
-      "&.nav--desktop $link:hover, &.nav--desktop $subMenuLink:hover": {
-        background: theme.palette.action.hover,
-      },
     },
+    /* Styles applied to the list wrapper */
     list: {},
+    /* Styles applied to each list item */
     listItem: {
       position: "relative",
       flexDirection: "column",
       alignItems: "flex-start",
       justifyContent: "center",
       padding: 0,
-      "&:hover $subMenu, &:focus-within $subMenu": {
-        pointerEvents: "all",
-        opacity: 1,
-      },
     },
+    /* Styles applies to each link */
     link: {
       display: "flex",
       alignItems: "center",
       padding: theme.spacing(2),
+      whiteSpace: "nowrap",
     },
+    /** Styles applied to the sub menu root */
     subMenu: { marginLeft: theme.spacing(2) },
+    /** Styles applied to each sub menu list item */
     subMenuListItem: { padding: 0 },
+    /** Styles applied to each sub menu link */
     subMenuLink: {
       display: "flex",
       flex: 1,
@@ -67,24 +45,20 @@ const styles = (theme) => {
   }
 }
 
-const Navigation = ({ classes, className, ...props }) => {
+const Navigation = ({
+  classes,
+  className,
+  component: Component = "nav",
+  subMenu = false,
+  filter,
+  ...props
+}) => {
   const { menuLinks } = useSiteMetadata()
-  const { useMobileMenu } = useContext(SiteContext)
+  const navLinks = menuLinks.filter(filter)
   return (
-    <nav
-      className={clsx(
-        {
-          nav: true,
-          "nav--mobile": useMobileMenu,
-          "nav--desktop": !useMobileMenu,
-        },
-        classes.root,
-        className
-      )}
-      {...props}
-    >
+    <Component className={clsx("nav", classes.root, className)} {...props}>
       <List className={clsx("nav__list", classes.list)}>
-        {menuLinks.map((menuItem, index) => (
+        {navLinks.map((menuItem, index) => (
           <ListItem
             className={clsx("nav__list-item", classes.listItem)}
             key={"link" + index}
@@ -95,9 +69,9 @@ const Navigation = ({ classes, className, ...props }) => {
               to={menuItem.link}
             >
               {menuItem.name}
-              {menuItem.subMenu.length > 0 && <NavArrow />}
+              {menuItem.subMenu.length > 0 && subMenu && <NavArrow />}
             </Link>
-            {menuItem.subMenu.length > 0 && (
+            {menuItem.subMenu.length > 0 && subMenu && (
               <SubNavigation
                 classes={{
                   root: classes.subMenu,
@@ -110,12 +84,32 @@ const Navigation = ({ classes, className, ...props }) => {
           </ListItem>
         ))}
       </List>
-    </nav>
+    </Component>
   )
 }
 
-Navigation.propTypes = {
-  classes: PropTypes.object.isRequired,
+Navigation.defaultProps = {
+  filter: (link) => link.location === "all",
 }
 
-export default withStyles(styles)(Navigation)
+Navigation.propTypes = {
+  /**
+   * Determines if submenus should render
+   */
+  subMenu: PropTypes.bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * A function used to filter out links from the menuLinks
+   */
+  filter: PropTypes.func.isRequired,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+}
+
+export default withStyles(styles, { name: "HypNavigation" })(Navigation)

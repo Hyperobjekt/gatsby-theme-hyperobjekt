@@ -1,11 +1,41 @@
 name: github
   repo: Hyperobjekt/gatsby-starter-hyperobjekt
-  branch: staging
+  branch: main
 
 media_folder: static/img
 public_folder: /img
 
 collections:
+  - label: "Configuration"
+    name: "config"
+    extension: json
+    editor:
+      preview: false
+    files:
+      - label: "Metadata"
+        name: "metadata"
+        file: "config/metadata.json"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Site Description", name: "description", widget: "string", hint: "Meta description used for search engine optimization" }
+          - { label: "Site Keywords",  name: "keywords", widget: "list", hint: "Meta keywords used as default for pages" }
+          - { label: "Copyright",  name: "copyright", widget: "string", hint: "Copyright message for the footer" }
+          - label: "Navigation"
+          name: "menuLinks"
+          widget: "list"
+          hint: "Navigation items that appear in the site header and footer"
+          fields:
+            - { label: "Name", name: "name", widget: "string" }
+            - { label: "URL", name: "link", widget: "string" }
+            - { label: "Type", name: "type", widget: "select", options: ["internal", "anchor"], hint: "use anchor for links within the page" }
+            - { label: "Location", name: "location", widget: "select", options: ["all", "header","footer"], hint: "`all` places the link in both the header and footer" }
+          - label: "Social Links"
+          name: "socialLinks"
+          widget: "list"
+          fields:
+            - { label: "Name", name: "name", widget: "select", options: ["Email", "Twitter", "Facebook", "YouTube", "Instagram", "Github", "LinkedIn", "Slack", "Gitlab", "Bitbucket", "Behance"] }
+            - { label: "Link", name: "link", widget: "string", hint: "for email, use your email address" }
+            - { label: "Location", name: "location", widget: "select", options: ["all", "header","footer"], hint: "`all` places the link in both the header and footer" }
   - label: "Pages"
     name: "pages"
     editor:
@@ -15,6 +45,28 @@ collections:
       - label: "Home"
         name: "home"
         file: "content/pages/index.mdx"
-        identifier_field: name
         fields:
+          - label: "Meta"
+            name: "cascade"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {
+                  label: "Page Title",
+                  name: title,
+                  widget: string,
+                  hint: "Title for the browser window",
+                }
+              - {
+                  label: "Description",
+                  name: "description",
+                  widget: "string",
+                  hint: "Not visible, but used for search engine optimization",
+                }
+              - {
+                  label: "Social Image",
+                  name: "image",
+                  widget: "image",
+                  hint: "Image used when page is shared on social media",
+                }
           - { label: "Body", name: "body", widget: "markdown" }

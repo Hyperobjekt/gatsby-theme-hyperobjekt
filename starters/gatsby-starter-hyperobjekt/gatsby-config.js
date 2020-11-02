@@ -1,61 +1,11 @@
+const metadata = require("./config/metadata.json")
+
 module.exports = {
-  siteMetadata: {
-    title: `Hyperobjekt`,
-    description: `Speed up your GatsbyJS development workflow. Designed as a set of opinionated and advanced themes and starters using MDX and Theme-UI. Incorporates gatsby-theme-hyperobjekt-core.`,
-    keywords: [`gatsby`, `theme`, `react`],
-    author: `Lane Olson`,
-    menuLinks: [
-      {
-        name: `Home`,
-        link: `/`,
-        type: `internal`, //internal or anchor
-      },
-      {
-        name: `Page 1`,
-        link: `/page-1`,
-        type: `internal`, //internal or anchor
-        subMenu: [
-          {
-            name: `Sub 1`,
-            link: `/sub-1`,
-            type: `internal`, //internal or anchor
-          },
-          {
-            name: `Sub 2`,
-            link: `/sub-2`,
-            type: `internal`, //internal or anchor
-          },
-        ],
-      },
-      {
-        name: `Page 2`,
-        link: `/page-2`,
-        type: `internal`, //internal or anchor
-      },
-    ],
-    socialLinks: [
-      {
-        name: `Email`,
-        link: `hyperobjekt@hyperobjekt.com`,
-        location: `footer`, //Options are "all", "header", "footer"
-      },
-      {
-        name: `Twitter`,
-        link: `https://twitter.com/hyperobjekt`,
-        location: `header`, //Options are "all", "header", "footer"
-      },
-      {
-        name: `Github`,
-        link: `https://www.github.com/hyperobjekt`,
-        location: `all`, //Options are "all", "header", "footer"
-      },
-    ],
-  },
+  siteMetadata: metadata,
   plugins: [
     {
       resolve: `gatsby-theme-hyperobjekt-core`,
       options: {
-        //Default options are:
         contentPath: `content/pages`,
         assetPath: `content/assets`,
         // displaySiteLogo: true,
@@ -81,6 +31,10 @@ module.exports = {
               {
                 family: `Nunito`,
                 variants: [`300`, `400`, `500`],
+              },
+              {
+                family: "Fira Mono",
+                variants: [`400`],
               },
             ],
           },

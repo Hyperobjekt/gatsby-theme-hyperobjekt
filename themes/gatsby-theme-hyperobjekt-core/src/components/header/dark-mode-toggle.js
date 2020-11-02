@@ -1,11 +1,12 @@
 import React, { useContext } from "react"
 import { IconButton } from "@material-ui/core"
 import { SiteContext } from "../../utils/site-context"
-import DarkModeOffIcon from "./dark-mode-off-icon"
-import DarkModeOnIcon from "./dark-mode-on-icon"
+import icons from "../../icons"
 
 const DarkModeToggle = (props) => {
   const { isDarkMode, setIsDarkMode } = useContext(SiteContext)
+  const DarkModeOffIcon = icons["darkOff"]
+  const DarkModeOnIcon = icons["darkOn"]
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode)
   }

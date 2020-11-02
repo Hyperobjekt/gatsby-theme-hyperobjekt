@@ -66,6 +66,7 @@ module.exports = (themeOptions) => {
           location: `all`, //Options are "all", "header", "footer"
         },
       ],
+      copyright: "Website copyright notice " + new Date().getFullYear(),
     },
     plugins: [
       {
@@ -117,7 +118,6 @@ module.exports = (themeOptions) => {
           webFontsConfig: options.webFontsConfig,
         },
       },
-      `gatsby-plugin-emotion`,
       `gatsby-plugin-mdx-embed`,
       `gatsby-plugin-sitemap`,
       `gatsby-plugin-robots-txt`,

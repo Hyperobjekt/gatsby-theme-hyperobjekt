@@ -44,6 +44,7 @@ export const useSiteMetadata = () => {
               link
               location
             }
+            copyright
           }
         }
       }

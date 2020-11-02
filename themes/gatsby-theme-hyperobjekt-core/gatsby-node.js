@@ -44,12 +44,12 @@ exports.createSchemaCustomization = ({ actions }) => {
   })
 
   createFieldExtension({
-    name: `defaultRightLocation`,
+    name: `defaultAllLocation`,
     extend() {
       return {
         resolve(source, args, context, info) {
           if (source[info.fieldName] == null) {
-            return "right"
+            return "all"
           }
           return source[info.fieldName]
         },
@@ -69,7 +69,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String!
       link: String!
       type: String!
-      location: String! @defaultRightLocation
+      location: String! @defaultAllLocation
       subMenu: [SubMenu] @defaultSubMenu
     }
     type SubMenu {

@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useSiteMetadata } from "./use-site-metadata"
-import { useSiteConfig } from "./use-site-config"
 import { useLocation } from "@reach/router"
+import { useSiteConfig } from "../utils/use-site-config"
+import { useSiteMetadata } from "../utils/use-site-metadata"
 
 const SEO = ({
   description: propDescription,

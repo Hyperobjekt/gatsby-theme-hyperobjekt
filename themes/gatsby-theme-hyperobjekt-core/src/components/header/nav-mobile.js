@@ -1,12 +1,14 @@
 import React, { useContext } from "react"
 import { IconButton } from "@material-ui/core"
-import { MenuIcon } from "./menu-icon"
 import { SiteContext } from "../../utils/site-context"
 import Navigation from "./nav"
-import NavDrawer from "./nav-drawer"
+import Drawer from "../drawer"
+import icons from "../../icons"
+import { headerLinkFilter } from "./header"
 
 const MenuCollapsed = (props) => {
   const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
+  const MenuIcon = icons["menu"]
 
   function handleMenuOpen() {
     setIsNavOpen(true)
@@ -26,9 +28,9 @@ const MenuCollapsed = (props) => {
       >
         <MenuIcon />
       </IconButton>
-      <NavDrawer open={isNavOpen} onClose={handleMenuClose}>
-        <Navigation />
-      </NavDrawer>
+      <Drawer open={isNavOpen} onClose={handleMenuClose}>
+        <Navigation filter={headerLinkFilter} subMenu />
+      </Drawer>
     </React.Fragment>
   )
 }

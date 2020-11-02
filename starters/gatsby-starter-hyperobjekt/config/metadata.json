@@ -1,0 +1,52 @@
+{
+  "title": "Hyperobjekt",
+  "description": "Speed up your GatsbyJS development workflow. Designed as a set of opinionated and advanced themes and starters using MDX and Theme-UI. Incorporates gatsby-theme-hyperobjekt-core.",
+  "keywords": ["gatsby", "theme", "react"],
+  "author": "Lane Olson",
+  "copyright": "Copyright Hyperobjekt © 2020",
+  "menuLinks": [
+    {
+      "name": "Home",
+      "link": "/",
+      "type": "internal",
+      "location": "footer"
+    },
+    {
+      "name": "Getting Started",
+      "link": "/getting-started",
+      "type": "internal",
+      "subMenu": [
+        {
+          "name": "Install",
+          "link": "/getting-started/#install",
+          "type": "internal"
+        },
+        {
+          "name": "Configuration",
+          "link": "/getting-started/#configuration",
+          "type": "internal"
+        }
+      ]
+    },
+    { "name": "Theming", "link": "/theming", "type": "internal" },
+    { "name": "Components", "link": "/components", "type": "internal" },
+    { "name": "Style Guide", "link": "/style-guide", "type": "internal" }
+  ],
+  "socialLinks": [
+    {
+      "name": "Email",
+      "link": "hyperobjekt@hyperobjekt.com",
+      "location": "footer"
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/hyperobjekt",
+      "location": "header"
+    },
+    {
+      "name": "Github",
+      "link": "https://www.github.com/hyperobjekt",
+      "location": "all"
+    }
+  ]
+}
