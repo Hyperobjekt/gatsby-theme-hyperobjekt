@@ -1,10 +1,20 @@
-backend:
-  name: github
-  repo: Hyperobjekt/gatsby-starter-hyperobjekt
-  branch: master
+# backend:
+#   name: github
+#   repo: Hyperobjekt/gatsby-starter-hyperobjekt
+#   branch: master
 
-media_folder: static/img
-public_folder: /img
+# FOR LOCAL DEVELOPMENT:
+# ---
+# - uncomment the backend below
+# - run `npx netlify-cms-proxy-server` to serve content
+
+backend:
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
+  branch: main # optional, defaults to master
+
+media_folder: /content/assets
+public_folder: /assets
 
 collections:
   - label: "Configuration"
@@ -12,64 +22,258 @@ collections:
     extension: json
     editor:
       preview: false
+    media_folder: "/content/assets"
+    public_folder: "/content/assets"
     files:
       - label: "Metadata"
         name: "metadata"
         file: "config/metadata.json"
         fields:
+          - {
+              label: "Site Logo",
+              name: "logoImage",
+              widget: "image",
+              hint: "image must be named `site-logo`",
+              pattern:
+                [
+                  'site-logo\.(svg|png|jpg)',
+                  "incorrect file name (file name must be site-logo)",
+                ],
+            }
+          - {
+              label: "Site Icon",
+              name: "iconImage",
+              widget: "image",
+              hint: "image must be named `site-icon.png`",
+              pattern:
+                [
+                  "site-icon.png",
+                  "incorrect file name (file name must be site-icon.png)",
+                ],
+            }
           - { label: "Site Title", name: "title", widget: "string" }
-          - { label: "Site Description", name: "description", widget: "string", hint: "Meta description used for search engine optimization" }
-          - { label: "Site Keywords",  name: "keywords", widget: "list", hint: "Meta keywords used as default for pages" }
-          - { label: "Copyright",  name: "copyright", widget: "string", hint: "Copyright message for the footer" }
+          - {
+              label: "Site Description",
+              name: "description",
+              widget: "string",
+              hint: "Meta description used for search engine optimization",
+            }
+          - {
+              label: "Site Keywords",
+              name: "keywords",
+              widget: "list",
+              hint: "Meta keywords used as default for pages",
+            }
+          - {
+              label: "Social Media Thumbnail",
+              name: "socialImage",
+              widget: "image",
+              hint: "image must be named `site-social`",
+              pattern:
+                [
+                  'site-social\.(png|jpg)',
+                  "incorrect file name (file name must be site-social.jpg)",
+                ],
+            }
+          - {
+              label: "Copyright",
+              name: "copyright",
+              widget: "string",
+              hint: "Copyright message for the footer",
+            }
           - label: "Navigation"
-          name: "menuLinks"
-          widget: "list"
-          hint: "Navigation items that appear in the site header and footer"
-          fields:
-            - { label: "Name", name: "name", widget: "string" }
-            - { label: "URL", name: "link", widget: "string" }
-            - { label: "Type", name: "type", widget: "select", options: ["internal", "anchor"], hint: "use anchor for links within the page" }
-            - { label: "Location", name: "location", widget: "select", options: ["all", "header","footer"], hint: "`all` places the link in both the header and footer" }
+            name: "menuLinks"
+            widget: "list"
+            hint: "Navigation items that appear in the site header and footer"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "link", widget: "string" }
+              - {
+                  label: "Type",
+                  name: "type",
+                  widget: "select",
+                  options: ["internal", "anchor"],
+                  hint: "use anchor for links within the page",
+                }
+              - {
+                  label: "Location",
+                  name: "location",
+                  widget: "select",
+                  options: ["all", "header", "footer"],
+                  hint: "`all` places the link in both the header and footer",
+                }
           - label: "Social Links"
-          name: "socialLinks"
-          widget: "list"
-          fields:
-            - { label: "Name", name: "name", widget: "select", options: ["Email", "Twitter", "Facebook", "YouTube", "Instagram", "Github", "LinkedIn", "Slack", "Gitlab", "Bitbucket", "Behance"] }
-            - { label: "Link", name: "link", widget: "string", hint: "for email, use your email address" }
-            - { label: "Location", name: "location", widget: "select", options: ["all", "header","footer"], hint: "`all` places the link in both the header and footer" }
+            name: "socialLinks"
+            widget: "list"
+            fields:
+              - {
+                  label: "Name",
+                  name: "name",
+                  widget: "select",
+                  options:
+                    [
+                      "Email",
+                      "Twitter",
+                      "Facebook",
+                      "YouTube",
+                      "Instagram",
+                      "Github",
+                      "LinkedIn",
+                      "Slack",
+                      "Gitlab",
+                      "Bitbucket",
+                      "Behance",
+                    ],
+                }
+              - {
+                  label: "Link",
+                  name: "link",
+                  widget: "string",
+                  hint: "for email, use your email address",
+                }
+              - {
+                  label: "Location",
+                  name: "location",
+                  widget: "select",
+                  options: ["all", "header", "footer"],
+                  hint: "`all` places the link in both the header and footer",
+                }
+      - label: "Core Settings"
+        name: "core"
+        file: "config/core.json"
+        fields:
+          - {
+              label: "Content Path",
+              name: "contentPath",
+              widget: "hidden",
+              default: "content/pages",
+            }
+          - {
+              label: "Asset Path",
+              name: "assetPath",
+              widget: "hidden",
+              default: "content/assets",
+            }
+          - {
+              label: "Show Site Logo",
+              name: "displaySiteLogo",
+              widget: "boolean",
+              default: true,
+            }
+          - {
+              label: "Show Site Logo (Mobile)",
+              name: "displaySiteLogoMobile",
+              widget: "boolean",
+              default: true,
+            }
+          - {
+              label: "Show Site Title",
+              name: "displaySiteTitle",
+              widget: "boolean",
+              default: false,
+            }
+          - {
+              label: "Show Site Title (Mobile)",
+              name: "displaySiteTitleMobile",
+              widget: "boolean",
+              default: false,
+            }
+          - {
+              label: "Sticky Header",
+              name: "useStickyHeader",
+              widget: "boolean",
+              default: true,
+            }
+          - {
+              label: "Shrink Header",
+              name: "useShrinkHeader",
+              widget: "boolean",
+              default: true,
+            }
+          - {
+              label: "Dark Mode Enabled",
+              name: "useDarkMode",
+              widget: "boolean",
+              default: true,
+            }
+          - {
+              label: "Use KaTeX",
+              name: "useKatex",
+              widget: "boolean",
+              default: false,
+            }
+          - {
+              label: "Resize Image Width",
+              name: "remarkImagesWidth",
+              widget: "number",
+              default: 1440,
+            }
+          - {
+              label: "Mobile Menu Breakpoint",
+              name: "mobileMenuBreakpoint",
+              widget: "number",
+              default: 768,
+            }
+          - {
+              label: "Fonts Loader",
+              name: "webFontsConfig",
+              widget: "object",
+              fields:
+                [
+                  {
+                    label: "Fonts",
+                    name: "fonts",
+                    widget: "object",
+                    fields:
+                      [
+                        {
+                          label: "Google Fonts",
+                          name: "google",
+                          widget: "list",
+                          fields:
+                            [
+                              {
+                                label: "Font Family",
+                                name: "family",
+                                widget: "string",
+                              },
+                              {
+                                label: "Variants",
+                                name: "variants",
+                                widget: "list",
+                              },
+                            ],
+                        },
+                      ],
+                  },
+                ],
+            }
   - label: "Pages"
     name: "pages"
     extension: mdx
     format: frontmatter
+    create: true
+    folder: "content/pages"
     editor:
       preview: false
-    preview_path: /
-    files:
-      - label: "Home"
-        name: "home"
-        file: "content/pages/index.mdx"
-        fields:
-          - label: "Meta"
-            name: "cascade"
-            widget: "object"
-            collapsed: true
-            fields:
-              - {
-                  label: "Page Title",
-                  name: title,
-                  widget: string,
-                  hint: "Title for the browser window",
-                }
-              - {
-                  label: "Description",
-                  name: "description",
-                  widget: "string",
-                  hint: "Not visible, but used for search engine optimization",
-                }
-              - {
-                  label: "Social Image",
-                  name: "image",
-                  widget: "image",
-                  hint: "Image used when page is shared on social media",
-                }
-          - { label: "Body", name: "body", widget: "markdown" }
+    fields:
+      - {
+          label: "Page Title",
+          name: title,
+          widget: string,
+          hint: "Title for the browser window",
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "string",
+          hint: "Not visible, but used for search engine optimization",
+        }
+      - { label: "Keywords", name: "keywords", widget: "list" }
+      - {
+          label: "Social Image",
+          name: "image",
+          widget: "image",
+          hint: "Image used when page is shared on social media",
+        }
+      - { label: "Body", name: "body", widget: "markdown" }

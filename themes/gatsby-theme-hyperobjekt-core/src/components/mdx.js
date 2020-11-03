@@ -12,40 +12,48 @@ import {
   TableRow,
   withStyles,
 } from "@material-ui/core"
+import { styled } from "@material-ui/core/styles"
 import Hero from "./hero"
 import SEO from "./seo"
 import Block from "./block"
 import CodeBlock from "./code-block"
-export const H1 = ({ children, ...props }) => (
+
+const headingStyles = {
+  root: {
+    marginTop: "1.5em",
+  },
+}
+
+export const H1 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h1" {...props}>
     {children}
   </Typography>
-)
-export const H2 = ({ children, ...props }) => (
+))
+export const H2 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h2" {...props}>
     {children}
   </Typography>
-)
-export const H3 = ({ children, ...props }) => (
+))
+export const H3 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h4" {...props}>
     {children}
   </Typography>
-)
-export const H4 = ({ children, ...props }) => (
+))
+export const H4 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h5" {...props}>
     {children}
   </Typography>
-)
-export const H5 = ({ children, ...props }) => (
+))
+export const H5 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h5" {...props}>
     {children}
   </Typography>
-)
-export const H6 = ({ children, ...props }) => (
+))
+export const H6 = withStyles(headingStyles)(({ children, ...props }) => (
   <Typography gutterBottom variant="h6" {...props}>
     {children}
   </Typography>
-)
+))
 export const Paragraph = ({ children, ...props }) => (
   <Typography gutterBottom variant="body1" paragraph={true} {...props}>
     {children}
@@ -78,6 +86,12 @@ export const OrderedList = withStyles(
   { name: "HypOrderedList" }
 )(List)
 
+export const CodeInline = styled("code")({
+  background: "#eee",
+  padding: 8,
+  borderRadius: 4,
+})
+
 export default {
   SEO,
   Hero,
@@ -101,4 +115,5 @@ export default {
   button: Button,
   a: Link,
   pre: CodeBlock,
+  code: CodeInline,
 }

@@ -1,4 +1,7 @@
 {
+  "logoImage": "site-logo.svg",
+  "socialImage": "site-social.jpg",
+  "iconImage": "site-icon.png",
   "title": "Hyperobjekt",
   "description": "Speed up your GatsbyJS development workflow. Designed as a set of opinionated and advanced themes and starters using MDX and Theme-UI. Incorporates gatsby-theme-hyperobjekt-core.",
   "keywords": ["gatsby", "theme", "react"],

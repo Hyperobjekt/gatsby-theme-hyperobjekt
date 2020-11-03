@@ -16,12 +16,20 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    padding: theme.spacing(2),
     "& > * + *": {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(2),
+    },
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(3),
     },
   },
-  primary: {},
-  secondary: {},
+  primary: {
+    textAlign: "center",
+  },
+  secondary: {
+    textAlign: "center",
+  },
   action: {
     color: theme.palette.primary.contrastText,
   },

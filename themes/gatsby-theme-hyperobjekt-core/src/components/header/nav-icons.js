@@ -21,7 +21,12 @@ const NavIcons = ({ classes, className, ...props }) => {
   const { useMobileMenu } = useContext(SiteContext)
   return (
     <div className={clsx("nav__icons", classes.root, className)} {...props}>
-      {useDarkMode && <DarkModeToggle className={classes.darkModeToggle} />}
+      {useDarkMode && (
+        <DarkModeToggle
+          aria-label="toggle dark mode"
+          className={classes.darkModeToggle}
+        />
+      )}
       {useMobileMenu && <MobileNavigation />}
     </div>
   )

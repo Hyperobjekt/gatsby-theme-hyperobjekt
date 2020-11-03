@@ -16,6 +16,9 @@ const styles = (theme) => ({
     [theme.breakpoints.up("sm")]: {
       padding: `${theme.spacing(8)}px 0`,
     },
+    "& > .MuiTypography-root": {
+      marginTop: 0,
+    },
   },
   /** Styles applied when the section is full width */
   fullWidth: {

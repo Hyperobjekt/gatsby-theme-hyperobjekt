@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react"
 import { deepmerge } from "@material-ui/utils"
-import { createMuiTheme } from "@material-ui/core/styles"
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles"
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout"
 import { SiteContext } from "../../utils/site-context"
 
@@ -61,7 +61,8 @@ export default function TopLayout({ children, theme }) {
         ? theme({ isDarkMode, theme: baseMuiTheme })
         : theme
     const merged = deepmerge(base, siteTheme)
-    return createMuiTheme(merged)
+    const muiTheme = createMuiTheme(merged)
+    return responsiveFontSizes(muiTheme)
   }, [theme, isDarkMode])
   return <ThemeTopLayout theme={adjustedTheme}>{children}</ThemeTopLayout>
 }

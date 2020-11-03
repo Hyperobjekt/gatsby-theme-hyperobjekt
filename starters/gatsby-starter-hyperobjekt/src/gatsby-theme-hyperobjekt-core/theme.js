@@ -35,6 +35,14 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
       fontFamily: ["Montserrat", "sans-serif"].join(","),
     },
     overrides: {
+      MuiTypography: {
+        h1: { marginTop: "1em" },
+        h2: { marginTop: "1em" },
+        h3: { marginTop: "1em" },
+        h4: { marginTop: "1em" },
+        h5: { marginTop: "1em" },
+        h6: { marginTop: "1em" },
+      },
       /** Header style overrides */
       HypHeader: {
         root: {},
