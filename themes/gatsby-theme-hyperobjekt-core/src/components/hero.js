@@ -25,6 +25,7 @@ const styles = (theme) => ({
     },
   },
   primary: {
+    marginTop: 0,
     textAlign: "center",
   },
   secondary: {

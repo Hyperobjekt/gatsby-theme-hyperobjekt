@@ -251,6 +251,28 @@ collections:
                   },
                 ],
             }
+          - {
+              label: "Responsive Font Sizes",
+              name: "responsiveFontSizes",
+              widget: "object",
+              fields:
+                [
+                  {
+                    label: "Breakpoints",
+                    name: "breakpoints",
+                    widget: "list",
+                    default: ["sm", "md", "lg"],
+                    hint: "a list of breakpoints for when font scaling should happen",
+                  },
+                  {
+                    label: "Factor",
+                    name: "factor",
+                    widget: "number",
+                    default: 2,
+                    hint: "This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.",
+                  },
+                ],
+            }
   - label: "Pages"
     name: "pages"
     extension: mdx

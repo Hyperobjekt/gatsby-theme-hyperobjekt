@@ -1,5 +1,49 @@
+import { createMuiTheme } from "@material-ui/core"
 import { deepmerge } from "@material-ui/utils"
 
+/**
+ * Base theme definitions
+ */
+const base = {
+  layout: {
+    contentWidth: 768,
+    headerHeight: 80,
+    shrinkHeaderHeight: 56,
+    shrinkOffset: -32,
+  },
+  palette: {
+    primary: {
+      light: "#122039",
+      main: "#021029",
+      dark: "#080c1c",
+    },
+    secondary: {
+      main: "#bd00f2",
+    },
+  },
+  typography: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        code: {
+          background: "#eee",
+        },
+      },
+    },
+    HypCodeBlock: {
+      root: {
+        fontFamily: ["Fira Mono", "monospace"].join(","),
+        backgroundColor: "#021029!important",
+      },
+    },
+  },
+}
+
+/**
+ * Dark theme overrides to the base theme
+ */
 const darkTheme = {
   palette: {
     background: {
@@ -8,11 +52,6 @@ const darkTheme = {
     },
   },
   overrides: {
-    MuiLink: {
-      root: {
-        color: "#a2b0c9",
-      },
-    },
     MuiCssBaseline: {
       "@global": {
         code: {
@@ -23,28 +62,30 @@ const darkTheme = {
   },
 }
 
-const HyperobjektTheme = ({ isDarkMode, theme }) => {
-  const base = {
-    layout: {
-      contentWidth: 768,
-      headerHeight: 80,
-      shrinkHeaderHeight: 56,
-      shrinkOffset: -32,
-    },
-    palette: {
-      primary: {
-        light: "#122039",
-        main: "#021029",
-        dark: "#080c1c",
-      },
-      secondary: {
-        main: "#b000ad",
-      },
-    },
-    typography: {
-      fontFamily: ["Montserrat", "sans-serif"].join(","),
-    },
+/**
+ * A function that accepts site context (currently only `isDarkMode`)
+ * and returns a theme object that is applied to the site.
+ */
+const HyperobjektTheme = ({ isDarkMode }) => {
+  // base theme with dark overrides if it's in dark mode
+  const baseTheme = deepmerge(base, isDarkMode ? darkTheme : {})
+  // create a base theme to utilize theme values and functions
+  const theme = createMuiTheme(baseTheme)
+  // build overrides
+  const overrides = {
     overrides: {
+      /** Site wide global style overrides */
+      MuiCssBaseline: {
+        "@global": {
+          // update padding and font on <code> elements
+          code: {
+            padding: `2px ${theme.spacing(1)}px`,
+            borderRadius: theme.shape.borderRadius,
+            fontFamily: ["Fira Mono", "monospace"].join(","),
+          },
+        },
+      },
+      /** Add margins to material UI typography */
       MuiTypography: {
         h1: { marginTop: "1em" },
         h2: { marginTop: "1em" },
@@ -52,16 +93,6 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
         h4: { marginTop: "1em" },
         h5: { marginTop: "1em" },
         h6: { marginTop: "1em" },
-      },
-      MuiCssBaseline: {
-        "@global": {
-          code: {
-            padding: "4px 8px",
-            background: "#eee",
-            borderRadius: 4,
-            fontFamily: ["Fira Mono", "monospace"].join(","),
-          },
-        },
       },
       /** Header style overrides */
       HypHeader: {
@@ -71,6 +102,16 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
         title: {},
         logo: {},
       },
+      /** Content area style overrides */
+      HypContent: {
+        root: {
+          // override link colors in content
+          "& .MuiLink-root.MuiTypography-root": {
+            color: theme.palette.secondary.main,
+          },
+        },
+      },
+      /** Default hero style overrides */
       HypHero: {
         root: {
           background: `linear-gradient(-10deg, #000519 67%, #001233)`,
@@ -80,8 +121,6 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
       /** Code block style overrides */
       HypCodeBlock: {
         root: {
-          fontFamily: ["Fira Mono", "monospace"].join(","),
-          backgroundColor: "#021029!important",
           borderRadius: 0,
           [theme.breakpoints.up(780)]: {
             borderRadius: theme.shape.borderRadius,
@@ -106,17 +145,16 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
         socialLink: {},
       },
     },
+    /** Apply default props to components */
     props: {
       // Name of the component ⚛️
       MuiButtonBase: {
-        // The default props to change
         variant: "contained", // All buttons have "contained" appearance
       },
     },
   }
-  const extension = isDarkMode ? darkTheme : {}
-  const mergedTheme = deepmerge(base, extension)
-  return mergedTheme
+  // return the merged base theme with overrides
+  return deepmerge(baseTheme, overrides)
 }
 
 export default HyperobjektTheme

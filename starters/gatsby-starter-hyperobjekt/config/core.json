@@ -21,5 +21,9 @@
         { "family": "Fira Mono", "variants": ["400"] }
       ]
     }
+  },
+  "responsiveFontSizes": {
+    "breakpoints": ["sm", "md", "lg"],
+    "factor": 2
   }
 }
