@@ -14,6 +14,17 @@ gatsby new my-new-site https://github.com/Hyperobjekt/gatsby-starter-hyperobjekt
 
 The core configuration and site metadata can all be configured using [Netlify CMS](https://gatsby-starter-hyperobjekt.netlify.app/admin/)fy CMS. Alternatively, you can manually edit the configuration files as outlined below.
 
+#### Netlify CMS
+
+Edit the Netlify CMS configuration in `/static/admin/config.yml` and point the backend to your Github repository.
+
+```yml
+backend:
+  name: github
+  repo: YourUsername/my-new-site
+  branch: master
+```
+
 #### Core Settings
 
 The core settings can be found in `/config/core.json` and specifies the configuration for the `gatsby-theme-hyperobjekt-core` theme.
