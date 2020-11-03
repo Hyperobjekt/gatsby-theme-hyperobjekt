@@ -16,7 +16,6 @@ export const useSiteConfig = () => {
           useShrinkHeader
           useSocialLinks
           useDarkMode
-          footerContentLocation
         }
       }
     `

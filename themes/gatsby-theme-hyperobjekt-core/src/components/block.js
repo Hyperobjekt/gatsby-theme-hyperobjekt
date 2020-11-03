@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
 import { withStyles } from "@material-ui/core"
-import { useWindowSize } from "@hyperobjekt/hooks"
+import useWindowSize from "../utils/use-window-size"
 
 const styles = (theme) => ({
   /** Styles for the section root */
@@ -33,9 +33,7 @@ const Block = ({
   ...props
 }) => {
   const isFullWidth = type === "fullWidth"
-  const { width } = useWindowSize()
-  const viewportWidth =
-    document && document.body ? document.body.clientWidth : width
+  const { clientWidth } = useWindowSize()
   return (
     <Component
       className={clsx(
@@ -49,9 +47,9 @@ const Block = ({
       )}
       style={{
         left: isFullWidth
-          ? `calc(-1 * (${viewportWidth}px - 100%) / 2)`
+          ? `calc(-1 * (${clientWidth}px - 100%) / 2)`
           : undefined,
-        maxWidth: isFullWidth ? viewportWidth : undefined,
+        maxWidth: isFullWidth ? clientWidth : undefined,
         ...overrideStyle,
       }}
       {...props}

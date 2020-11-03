@@ -1,45 +1,11 @@
 const metadata = require("./config/metadata.json")
-
+const coreOptions = require("./config/core.json")
 module.exports = {
   siteMetadata: metadata,
   plugins: [
     {
       resolve: `gatsby-theme-hyperobjekt-core`,
-      options: {
-        contentPath: `content/pages`,
-        assetPath: `content/assets`,
-        // displaySiteLogo: true,
-        displaySiteTitle: false,
-        // displaySiteLogoMobile: true,
-        displaySiteTitleMobile: false,
-        // invertLogo: false,
-        useStickyHeader: true,
-        useShrinkHeader: true,
-        // useSocialLinks: true,
-        // useDarkMode: true,
-        // useKatex: false,
-        // footerContentLocation: "left", // "left", "right", "center"
-        // remarkImagesWidth: 1440,
-        // mobileMenuBreakpoint: 768,
-        webFontsConfig: {
-          fonts: {
-            google: [
-              {
-                family: `Montserrat`,
-                variants: [`300`, `400`, `500`],
-              },
-              {
-                family: `Nunito`,
-                variants: [`300`, `400`, `500`],
-              },
-              {
-                family: "Fira Mono",
-                variants: [`400`],
-              },
-            ],
-          },
-        },
-      },
+      options: coreOptions,
     },
     {
       resolve: `gatsby-plugin-manifest`,

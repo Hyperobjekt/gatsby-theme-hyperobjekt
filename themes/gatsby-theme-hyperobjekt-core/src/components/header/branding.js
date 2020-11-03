@@ -4,8 +4,8 @@ import { Link } from "gatsby-theme-material-ui"
 import { useSiteConfig } from "../../utils/use-site-config"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
 import clsx from "clsx"
-import useWindowSize from "@hyperobjekt/hooks/lib/useWindowSize"
 import { Typography, useTheme, withStyles } from "@material-ui/core"
+import useWindowSize from "../../utils/use-window-size"
 
 const styles = (theme) => ({
   root: {

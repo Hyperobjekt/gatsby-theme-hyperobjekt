@@ -1,6 +1,6 @@
 import React, { useState, createContext } from "react"
 import { useSiteConfig } from "./use-site-config"
-import { useWindowSize } from "@hyperobjekt/hooks"
+import useWindowSize from "./use-window-size"
 
 export const SiteContext = createContext()
 
