@@ -13,6 +13,13 @@ const darkTheme = {
         color: "#a2b0c9",
       },
     },
+    MuiCssBaseline: {
+      "@global": {
+        code: {
+          background: "#122039",
+        },
+      },
+    },
   },
 }
 
@@ -42,6 +49,16 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
         h4: { marginTop: "1em" },
         h5: { marginTop: "1em" },
         h6: { marginTop: "1em" },
+      },
+      MuiCssBaseline: {
+        "@global": {
+          code: {
+            padding: "4px 8px",
+            background: "#eee",
+            borderRadius: 4,
+            fontFamily: ["Fira Mono", "monospace"].join(","),
+          },
+        },
       },
       /** Header style overrides */
       HypHeader: {
