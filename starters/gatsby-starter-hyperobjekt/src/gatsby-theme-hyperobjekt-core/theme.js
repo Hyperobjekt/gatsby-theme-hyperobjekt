@@ -37,6 +37,9 @@ const HyperobjektTheme = ({ isDarkMode, theme }) => {
         main: "#021029",
         dark: "#080c1c",
       },
+      secondary: {
+        main: "#b000ad",
+      },
     },
     typography: {
       fontFamily: ["Montserrat", "sans-serif"].join(","),
