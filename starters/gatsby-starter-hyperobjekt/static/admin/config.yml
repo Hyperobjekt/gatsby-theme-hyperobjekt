@@ -38,6 +38,8 @@ collections:
             - { label: "Location", name: "location", widget: "select", options: ["all", "header","footer"], hint: "`all` places the link in both the header and footer" }
   - label: "Pages"
     name: "pages"
+    extension: mdx
+    format: frontmatter
     editor:
       preview: false
     preview_path: /
