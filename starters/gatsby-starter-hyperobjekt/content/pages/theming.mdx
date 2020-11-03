@@ -4,28 +4,187 @@ title: Theming
 
 ## Theming
 
-### Overview
+Theming and styling components throughout the site is handled using [@material-ui/styles](https://material-ui.com/styles/basics/).
 
-#### Base Theme
+All components in the Hyperobjekt Core have been built so their styles can be overriden within a theme configuration. The theme configuration can be overriden by editing the theme file in `/src/gatsby-theme-hyperobjekt-core/theme.js`.
 
-Overview of material UI theme.
+The theme is a JSON configuration containing values for:
 
-#### Colors
+- breakpoints
+- color palette
+- typography
+- layout and spacing
+- shadows
+- transitions
 
-#### Typography
+[Explore the default theme](https://material-ui.com/customization/default-theme/) to see everything that is defined in the theme, and their default values.
 
-#### Layout
+**Simple Theme:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
+_redefines the primary color palette used throughout the site to use greys_
 
-#### Overrides
+```js
+const theme = {
+  palette: {
+    primary: {
+      light: "#ccc",
+      main: "#999",
+      dark: "#666",
+    },
+  },
+}
 
-#### Component Shadowing
+export default theme
+```
 
-How to shadow components in the theme.
+### Colors
 
-#### Icons
+Colors are defined in the `palette` key of the theme object. There are several palettes within the theme, including:
 
-#### Componen
+- primary colors
+- secondary colors
+- text colors
+- background colors
 
-#### Content
+You can specify colors manually, or use one of the palette [provided by Material UI](https://material-ui.com/customization/color/#color-palette).
 
-#### Footer
+#### Examples
+
+<br />
+
+**Using a Material UI palette:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
+_redefines the primary color palette to use pink_
+
+```js
+import pink from "@material-ui/core/colors/pink"
+
+const theme = {
+  palette: {
+    primary: pink,
+  },
+}
+
+export default theme
+```
+
+<br />
+
+**Change text and background:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
+_redefines the primary text color and the default background_
+
+```js
+const theme = {
+  palette: {
+    text: {
+      primary: "#333",
+    },
+    background: {
+      default: "#eee",
+    },
+  },
+}
+
+export default theme
+```
+
+#### Resources
+
+- See [Palette Customization](https://material-ui.com/customization/palette/) in the Material UI docs
+- Explore the `palette` key in [the default theme](https://material-ui.com/customization/default-theme/)
+
+### Typography
+
+Typography styles are defined in the `typography` key of the theme object.
+
+#### Examples
+
+> Todo
+
+#### Resources
+
+- See [Typography Customization](https://material-ui.com/customization/typography/) in the Material UI docs
+- Explore the `typography` key in [the default theme](https://material-ui.com/customization/default-theme/)
+
+### Breakpoints
+
+Breakpoints are defined in the `breakpoints` key of the theme object.
+
+#### Examples
+
+> Todo
+
+#### Resources
+
+- See [Breakpoints Customization](https://material-ui.com/customization/breakpoints/) in the Material UI docs
+- Explore the `breakpoints` key in [the default theme](https://material-ui.com/customization/default-theme/)
+
+### Layout
+
+The `layout` key in the theme object sets a few configuration values for the header and content:
+
+```js
+const theme = {
+  layout: {
+    contentWidth: 768,
+    headerHeight: 80,
+    shrinkHeaderHeight: 56,
+    shrinkOffset: -32,
+  },
+}
+
+export default theme
+```
+
+### Overrides
+
+#### Examples
+
+<br />
+
+**Set a global override:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
+_sets a style for font smoothing on the `<html>` element for the page_
+
+```js
+const theme = {
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        html: {
+          WebkitFontSmoothing: "auto",
+        },
+      },
+    },
+  },
+}
+
+export default theme
+```
+
+#### Resources
+
+- See [Globals](https://material-ui.com/customization/globals/) in the Material UI docs
+
+### Icons
+
+In order to customize icons on the site, you can override the default icons provided by the them using component shadowing.
+
+<br />
+
+**Override Icons:** `/src/gatsby-theme-hyperobjekt-core/icons.js` <br />
+_redefines themenu icons with the FontAwesome menu icon_
+
+```js
+import { icons } from "gatsby-theme-hyperobjekt-core"
+import { FaBars } from "react-icons/fa"
+
+const overrideIcons = {
+  menu: MenuIcon,
+  ...icons,
+}
+
+return overrideIcons
+```
+
+#### Resources
+
+- See [Hyperobjekt Core default icons](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/icons.js)
+- See [react-icons](https://react-icons.github.io/) for available icons

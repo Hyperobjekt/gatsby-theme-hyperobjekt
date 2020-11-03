@@ -16,7 +16,7 @@
   "webFontsConfig": {
     "fonts": {
       "google": [
-        { "family": "Montserrat", "variants": ["300", "400", "500"] },
+        { "family": "Montserrat", "variants": ["300", "400", "500", "700"] },
         { "family": "Nunito", "variants": ["300", "400", "500"] },
         { "family": "Fira Mono", "variants": ["400"] }
       ]

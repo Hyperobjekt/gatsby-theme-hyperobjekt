@@ -12,7 +12,7 @@ gatsby new my-new-site https://github.com/Hyperobjekt/gatsby-starter-hyperobjekt
 
 ### Configuration
 
-The core configuration and site metadata can all be configured using Netlify CMS. Alternatively, you can manually edit the configuration files as outlined below.
+The core configuration and site metadata can all be configured using [Netlify CMS](https://gatsby-starter-hyperobjekt.netlify.app/admin/)fy CMS. Alternatively, you can manually edit the configuration files as outlined below.
 
 #### Core Settings
 
@@ -103,8 +103,24 @@ The images used sitewide are placed in `/content/assets`, replace these images w
 - **Social Image:** `/content/assets/site-social.jpg`
   - You can also specify this on a per-page basis using front matter
 
-### Adding Content
+### Adding Pages
 
-#### Pages
+You can add pages via the [Netlify CMS](https://gatsby-starter-hyperobjekt.netlify.app/admin/)fy CMS, or manually by adding files to the `/content/pages` directory.
 
-#### Images
+Pages use [MDX](https://mdxjs.com/) which is an extended version of markdown that allows you to use React components within the file. You can import the components you want to use manually, or you can [specify the MDX components that are globally available](#todo).
+
+Each page should have some front matter to help with SEO.
+
+**Example frontmatter:** `/content/pages/getting-started.mdx`
+
+```yaml
+---
+title: Getting Started
+description: Learn how to get started using the Gatsby Hyperobjekt Core theme
+image: /uploads/social-getting-started.jpg
+keywords:
+  - gatsby
+  - hyperobjekt
+---
+## Page content
+```

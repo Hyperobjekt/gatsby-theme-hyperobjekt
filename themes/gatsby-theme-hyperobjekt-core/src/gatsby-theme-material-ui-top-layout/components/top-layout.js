@@ -51,6 +51,12 @@ export default function TopLayout({ children, theme }) {
                 scrollBehavior: "auto !important",
               },
             },
+            code: {
+              padding: "4px 8px",
+              background: "#eee",
+              borderRadius: 4,
+              fontFamily: ["Fira Mono", "monospace"].join(","),
+            },
           },
         },
       },

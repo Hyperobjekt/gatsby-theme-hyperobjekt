@@ -3,3 +3,77 @@ title: Components
 ---
 
 ## Components
+
+### Creating New Components
+
+Each component should have a few things to ensure it is themable and can be reused in other sites.
+
+**Sample `RedBlock` component:** `ImportanBlock.js`
+
+```jsx
+import { withStyles } from "@material-ui/core"
+import clsx from "clsx"
+import React from "react"
+
+// these styles get injected into the component
+const styles = (theme) => ({
+  root: {
+    background: "#f00" // important color
+    padding: theme.spacing(2)
+  },
+})
+
+const ImportantBlock = ({
+  classes, // an object of class names, injected by `withStyles`
+  className, // a class name provided when the component is used
+  children,
+  ...props // spread remaining props so they are passed down the component tree
+}) => {
+  return (
+    <div
+      className={
+        clsx( // clsx adds all of the following class names
+          "important-block",
+          classes.root,
+          className
+        )
+      }
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
+// inject the styles, and assign the name "HypImportantBlock"
+// so overrides can be specified in the theme
+export default withStyles(
+  styles, { name: "HypImportantBlock" }
+)(ImportantBlock)
+```
+
+### Included Components
+
+#### Header
+
+> Todo...
+
+#### Main
+
+> Todo...
+
+#### Content
+
+> Todo...
+
+#### Footer
+
+> Todo...
+
+#### Block
+
+> Todo...
+
+#### Hero
+
+> Todo...

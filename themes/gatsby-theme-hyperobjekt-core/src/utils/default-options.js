@@ -6,7 +6,7 @@ module.exports = (themeOptions) => {
       google: [
         {
           family: `Montserrat`,
-          variants: [`300`, `400`, `500`],
+          variants: [`300`, `400`, `500`, `700`],
         },
         {
           family: `Nunito`,

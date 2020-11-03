@@ -65,6 +65,7 @@ export const BulletList = withStyles(
     root: {
       listStyleType: "disc",
       paddingLeft: theme.spacing(2),
+      marginBottom: theme.spacing(2),
       "& > li": {
         display: "list-item",
       },
@@ -78,6 +79,7 @@ export const OrderedList = withStyles(
     root: {
       listStyleType: "decimal",
       paddingLeft: theme.spacing(2),
+      marginBottom: theme.spacing(2),
       "& > li": {
         display: "list-item",
       },
@@ -113,7 +115,7 @@ export default {
   td: TableCell,
   th: TableCell,
   button: Button,
-  a: Link,
+  a: withStyles({ root: { fontWeight: "bold" } })(Link),
   pre: CodeBlock,
   code: CodeInline,
 }

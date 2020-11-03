@@ -21,13 +21,13 @@
       "type": "internal",
       "subMenu": [
         {
-          "name": "Install",
-          "link": "/getting-started/#install",
+          "name": "Configuration",
+          "link": "/getting-started/#configuration",
           "type": "internal"
         },
         {
-          "name": "Configuration",
-          "link": "/getting-started/#configuration",
+          "name": "Adding Pages",
+          "link": "/getting-started/#adding-pages",
           "type": "internal"
         }
       ]
