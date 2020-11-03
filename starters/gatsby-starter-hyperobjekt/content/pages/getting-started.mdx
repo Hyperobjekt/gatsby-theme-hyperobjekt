@@ -12,9 +12,87 @@ gatsby new my-new-site https://github.com/Hyperobjekt/gatsby-starter-hyperobjekt
 
 ### Configuration
 
-Main site configuration is managed through the `/config/metadata.json` file. You can edit it directly, or use the Netlify CMS to edit it.
+The core configuration and site metadata can all be configured using Netlify CMS. Alternatively, you can manually edit the configuration files as outlined below.
 
-#### Netlify CMS
+#### Core Configuration
+
+The core configuration can be found in `/config/core.json` and specifies the configuration for the `gatsby-theme-hyperobjekt-core` theme.
+
+**Sample:** `/config/core.json`
+
+```js
+{
+  "contentPath": "content/pages", // location of page content
+  "assetPath": "content/assets", // location of assets accessed in content (e.g. images, videos, etc)
+  "displaySiteLogo": true, // true to display a logo in the header, false for no logo
+  "displaySiteTitle": false, // true to display a site title in the header, false for no site title
+  "displaySiteLogoMobile": true, // true to display site logo on mobile, false to hide logo on mobile
+  "displaySiteTitleMobile": false, // true to display site title on mobile, false to hide site title on mobile
+  "useStickyHeader": true, // true to have header stick to the top of the window on scroll
+  "useShrinkHeader": true, // true to shrink the header once the page is scrolled
+  "useSocialLinks": true, // true to display social links on the site
+  "useDarkMode": true, // true to enable toggle between dark / light themese
+  "useKatex": false, // true to enable mathemtics typesetting
+  "remarkImagesWidth": 1440, // width to scale down content images to
+  "mobileMenuBreakpoint": 768, // breakpoint where navigation switches to desktop nav
+  "webFontsConfig": { // configuration outlining which web fonts to load from google
+    "fonts": {
+      "google": [
+        { "family": "Montserrat", "variants": ["300", "400", "500"] },
+      ]
+    }
+  }
+}
+
+```
+
+#### Site Metadata
+
+Site metadata can be found in `/config/metadata.json`, and specifies:
+
+- Defaults for SEO fields
+- Site Navigation
+- Social Media Accounts
+- Copyright (for footer)
+
+**Sample:** `/config/metadata.json`
+
+```js
+{
+  "title": "Hyperobjekt",
+  "description": "Speed up your GatsbyJS development workflow. Designed as a set of opinionated and advanced themes and starters using MDX and Theme-UI. Incorporates gatsby-theme-hyperobjekt-core.",
+  "keywords": ["gatsby", "theme", "react"],
+  "author": "Lane Olson",
+  "copyright": "Copyright Hyperobjekt © 2020",
+  "menuLinks": [
+    {
+      "name": "About", // label for the link
+      "link": "/about", // page to links to
+      "type": "internal", // "internal" or "anchor" for on-page navigation
+      "location": "header", // "header", "footer", or "all" to show in both
+      "subMenu": [ // links to nest below in a submenu
+        {
+          "name": "Our Team",
+          "link": "/about/our-team",
+          "type": "internal"
+        },
+        ...
+      ]
+    },
+
+    ...
+  ],
+  "socialLinks": [
+    {
+      "name": "Twitter", // type of social media
+      "link": "https://twitter.com/hyperobjekt", // link to social media account
+      "location": "header" // "header", "footer", or "all" for both
+    },
+    ...
+  ]
+}
+
+```
 
 #### Logo
 

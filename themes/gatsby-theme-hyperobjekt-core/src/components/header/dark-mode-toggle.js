@@ -11,7 +11,7 @@ const DarkModeToggle = (props) => {
     setIsDarkMode(!isDarkMode)
   }
   return (
-    <IconButton onClick={handleToggle} {...props}>
+    <IconButton onClick={handleToggle} aria-label="toggle dark mode" {...props}>
       {isDarkMode ? <DarkModeOnIcon /> : <DarkModeOffIcon />}
     </IconButton>
   )

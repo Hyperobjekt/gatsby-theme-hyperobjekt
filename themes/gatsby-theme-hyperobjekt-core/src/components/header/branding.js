@@ -15,7 +15,10 @@ const styles = (theme) => ({
   title: {
     fontSize: theme.typography.pxToRem(24),
   },
-  logo: {},
+  logo: {
+    width: 150,
+    height: 20,
+  },
 })
 
 const LogoImage = ({ logo, title, ...props }) => {
@@ -72,4 +75,4 @@ const Branding = ({ classes, className, ...props }) => {
   )
 }
 
-export default withStyles(styles)(Branding)
+export default withStyles(styles, { name: "HypBranding" })(Branding)

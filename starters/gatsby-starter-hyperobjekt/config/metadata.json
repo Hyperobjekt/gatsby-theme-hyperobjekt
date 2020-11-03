@@ -4,6 +4,7 @@
   "keywords": ["gatsby", "theme", "react"],
   "author": "Lane Olson",
   "copyright": "Copyright Hyperobjekt © 2020",
+  "siteUrl": "https://gatsby-starter-hyperobjekt.netlify.app",
   "menuLinks": [
     {
       "name": "Home",
