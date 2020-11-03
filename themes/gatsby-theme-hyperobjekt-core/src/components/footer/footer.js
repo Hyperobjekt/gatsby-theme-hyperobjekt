@@ -74,7 +74,7 @@ const styles = (theme) => ({
   socialLink: {},
 })
 
-const SiteFooter = ({ className, classes, ...props }) => {
+const SiteFooter = ({ className, classes, children, ...props }) => {
   return (
     <footer
       id="footer"
@@ -82,6 +82,7 @@ const SiteFooter = ({ className, classes, ...props }) => {
       {...props}
     >
       <div className={clsx("footer__wrapper", classes.wrapper)}>
+        {children}
         <FooterNav
           classes={{
             root: classes.links,
@@ -89,7 +90,6 @@ const SiteFooter = ({ className, classes, ...props }) => {
             link: classes.link,
           }}
         />
-
         <FooterSocial
           classes={{ root: classes.social, link: classes.socialLink }}
         />

@@ -1,0 +1,295 @@
+---
+title: Guides
+---
+
+## Guides
+
+### Creating New Components
+
+To create new components to use in the site, first create a file in the `/src/components` directory.
+
+In this example, we are going to create a "warning block" component, that displays some content inside of a wrapper with "warning" styles.
+
+Each component should have a few things to ensure it is themable and can be reused in other sites. See the full component below:
+
+**Full component:** `/src/components/warning-block.js`
+
+```jsx
+import React from "react"
+import { withStyles } from "@material-ui/core"
+import clsx from "clsx"
+
+// these styles get injected into the component
+const styles = (theme) => ({
+  root: {
+    background: theme.palette.warning.light // warning color from theme
+    padding: theme.spacing(1),
+    margin: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      margin: theme.spacing(3)
+    }
+  },
+  content: {
+    border: `4px solid ${theme.palette.warning.dark}`,
+    padding: theme.spacing(2)
+  }
+})
+
+const WarningBlock = ({
+  classes, // an object of class names, injected by `withStyles`
+  className, // a class name provided when the component is used
+  children,
+  ...props // spread remaining props so they are passed down the component tree
+}) => {
+  return (
+    <div
+      className={
+        clsx( // clsx adds all of the following class names
+          "warning",
+          classes.root,
+          className
+        )
+      }
+      {...props}
+    >
+      <div className={clsx("warning__content", classes.content)}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+// inject the styles, and assign the name "HypWarningBlock"
+// so overrides can be specified in the theme
+export default withStyles(
+  styles, { name: "HypWarningBlock" }
+)(WarningBlock)
+```
+
+#### Defining the styles
+
+Styles are defined first, using a function that accepts the site theme and produces an object defining the different styles used within the component.
+
+```jsx
+const styles = (theme) => ({
+  root: {
+    background: theme.palette.warning.light // warning color from theme
+    padding: theme.spacing(1),
+    margin: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      margin: theme.spacing(3)
+    }
+  },
+  content: {
+    border: `4px solid ${theme.palette.warning.dark}`,
+    padding: theme.spacing(2)
+  }
+})
+```
+
+In this example, there are only styles for the root element, but you can add as many different styles to the object as needed.
+
+These styles will be injected into the `classes` prop of the component later, when called using `withStyles`.
+
+#### Building the Components
+
+For the most part, you will build your component like any other React component.
+
+```jsx
+const WarningBlock = ({
+  classes, // an object of class names, injected by `withStyles`
+  className, // a class name provided when the component is used
+  children,
+  ...props // spread remaining props so they are passed down the component tree
+}) => {
+  return (
+    <div
+      className={clsx(
+        // clsx adds all of the following class names
+        "warning",
+        classes.root,
+        className
+      )}
+      {...props}
+    >
+      <div className={clsx("warning__content", classes.content)}>
+        {children}
+      </div>
+    </div>
+  )
+}
+```
+
+The important part here is to add `classes` and `className` props to your component.
+
+- `classes`: receives any injected styles defined earlier into the component
+- `className`: ensures that any class names assigned to the component are used (e.g. `<WarningBlock className="my-warning">` will add the `my-warning` class name, as well as the others specified.)
+- `...props`: the remaining props for the component should be added to the root component, in this case `div`. This ensures when someone adds an additional prop to `<WarningBlock>` it is applied correctly (e.g. `<WarningBlock onClick={handler} />` will pass the onClick prop to the `div`)
+
+When specifying the class name for an element, use the `clsx` utility to add multiple class names.
+
+#### Injecting the styles
+
+The last step is to inject the styles defined earlier into the component, and define a theme-friendly name:
+
+```jsx
+// inject the styles, and assign the name "HypWarningBlock"
+// so overrides can be specified in the theme
+export default withStyles(styles, { name: "HypWarningBlock" })(WarningBlock)
+```
+
+The name `HypWarningBlock` can then be re-themed for use on other sides by providing overrides.
+
+```jsx
+const theme = {
+  // rest of theme here
+  overrides: {
+    HypWarningBlock: {
+      root: {
+        background: "#ccf", // blue warnings
+      },
+      content: {
+        borderColor: "#99f",
+        fontFamily: "monospace",
+      },
+    },
+  },
+}
+
+export default theme
+```
+
+#### Using the component
+
+Once you've created your component, you can import and use it in MDX files.
+
+```mdx
+---
+title: My Warning Block Demo
+---
+
+import WarningBlock from "../../src/components/warning-block"
+
+<WarningBlock>I'm warning you!</WarningBlock>
+```
+
+You can also provide this as a default component for your MDX files so you don't need to import it. See [Setting Default Markdown Components](#setting-default-markdown-components)
+
+### Customizing the Header
+
+The header can be re-themed using the theme object.
+
+`/src/gatsby-theme-hyperobjekt-core/theme.js`:
+
+```jsx
+const theme = {
+  // rest of theme here
+  overrides: {
+    /** Header style overrides */
+    HypHeader: {
+      // white header with black text
+      root: {
+        background: "#fff",
+        color: "#000",
+      },
+      // any toolbar overrides
+      toolbar: {},
+      // any branding container overrides
+      branding: {},
+      // any site title overrides
+      title: {},
+      // resize logo
+      logo: {
+        width: 200,
+        height: 30,
+      },
+    },
+  },
+}
+
+export default theme
+```
+
+#### Augmenting the header
+
+If the header is missing functionality and you want to add something, you can augment the existing header using component shadowing.
+
+For example, if you wanted to add a search to the header:
+
+`/src/gatsby-theme-hyperobjekt-core/header/header.js`
+
+```jsx
+import { Header as CoreHeader } from "gatsby-theme-hyperobjekt-core"
+import { MySearch } from "./custom-search-component"
+
+const Header = ({ ...props }) => (
+  <CoreHeader {...props}>
+    <MySearch />
+  </CoreHeader>
+)
+
+export default Header
+```
+
+#### Replacing the header
+
+If you don't want to use the header from `gatsby-theme-hyperobjekt-core`, you can also completely replace it using component shadowing.
+
+`/src/gatsby-theme-hyperobjekt-core/header/header.js`
+
+```jsx
+import React from "react"
+import { withStyles } from "@material-ui/core"
+import clsx from "clsx"
+
+const styles = (theme) => ({
+  root: {
+    background: "#0f0",
+    color: "#f00",
+    fontFamily: "comic sans",
+  },
+})
+
+const Header = ({ ...props }) => (
+  <header className={clsx("header", classes.root, className)}>
+    My Website
+  </header>
+)
+
+export default withStyles(styles, { name: "HypUglyHeader" })(Header)
+```
+
+- See [core header components](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/components/header) that can be shadowed
+
+### Customizing the Layout
+
+> Todo: example
+
+- See [core layout components](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/components/layout) that can be shadowed
+
+### Customizing the Footer
+
+> Todo: example
+
+- See [core footer components](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/components/footer) that can be shadowed
+
+### Setting Default Markdown Components
+
+Use component shadowing to add your own components to the set provided by `gatsby-theme-hyperobjekt-core`.
+
+**Add a new component:**`/src/gatsby-theme-hyperobjekt-core/mdx.js`:
+_adds the `<WarningBlock>` so it can be used in `mdx` files without import_
+
+```jsx
+import { mdxComponents } from "gatsby-theme-hyperobjekt-core"
+import WarningBlock from "../components/warning-block"
+
+const overrideMdxComponents = {
+  ...mdxComponents,
+  WarningBlock,
+}
+```
+
+- See [default MDX components](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/components/mdx.js)
+
+> Todo

@@ -93,6 +93,7 @@ collections:
                   name: "type",
                   widget: "select",
                   options: ["internal", "anchor"],
+                  default: "internal",
                   hint: "use anchor for links within the page",
                 }
               - {
@@ -100,6 +101,7 @@ collections:
                   name: "location",
                   widget: "select",
                   options: ["all", "header", "footer"],
+                  default: "all",
                   hint: "`all` places the link in both the header and footer",
                 }
           - label: "Social Links"
@@ -136,6 +138,7 @@ collections:
                   name: "location",
                   widget: "select",
                   options: ["all", "header", "footer"],
+                  default: "footer",
                   hint: "`all` places the link in both the header and footer",
                 }
       - label: "Core Settings"
@@ -267,13 +270,15 @@ collections:
           label: "Description",
           name: "description",
           widget: "string",
+          required: false,
           hint: "Not visible, but used for search engine optimization",
         }
-      - { label: "Keywords", name: "keywords", widget: "list" }
+      - { label: "Keywords", name: "keywords", widget: "list", required: false }
       - {
           label: "Social Image",
           name: "image",
           widget: "image",
+          required: false,
           hint: "Image used when page is shared on social media",
         }
       - { label: "Body", name: "body", widget: "markdown" }

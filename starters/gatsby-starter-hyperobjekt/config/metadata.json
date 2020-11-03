@@ -33,7 +33,7 @@
       ]
     },
     { "name": "Theming", "link": "/theming", "type": "internal" },
-    { "name": "Components", "link": "/components", "type": "internal" },
+    { "name": "Guides", "link": "/guides", "type": "internal" },
     { "name": "Style Guide", "link": "/style-guide", "type": "internal" }
   ],
   "socialLinks": [

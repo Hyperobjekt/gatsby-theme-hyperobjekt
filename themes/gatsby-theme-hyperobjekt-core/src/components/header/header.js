@@ -55,7 +55,7 @@ export const styles = (theme) => ({
 export const headerLinkFilter = (link) =>
   ["all", "header"].indexOf(link.location) > -1
 
-const SiteHeader = ({ classes, ...props }) => {
+const SiteHeader = ({ classes, children, ...props }) => {
   // state indicating whether header is condensed
   const [shrink, setShrink] = useState(false)
   // state indicating if the header is "stuck"
@@ -100,6 +100,7 @@ const SiteHeader = ({ classes, ...props }) => {
             logo: classes.logo,
           }}
         />
+        {children}
         {!useMobileMenu && (
           <DesktopNavigation subMenu filter={headerLinkFilter} />
         )}

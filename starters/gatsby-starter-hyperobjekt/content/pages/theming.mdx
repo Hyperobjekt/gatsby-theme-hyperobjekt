@@ -108,7 +108,57 @@ Typography styles are defined in the `typography` key of the theme object.
 
 Breakpoints are defined in the `breakpoints` key of the theme object.
 
+```jsx
+const theme = {
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+}
+```
+
+The theme provides helper functions to define styles based on the specified breakpoints. These functions include:
+
+- `theme.breakpoints.up(key)`
+- `theme.breakpoints.down(key)`
+- `theme.breakpoints.only(key)`
+- `theme.breakpoints.between(start, end)`
+
 #### Examples
+
+<br />
+
+**Styling using breakpoints:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
+_override H1 font sizes at different breakpoints_
+
+```jsx
+const baseTheme = ({ theme }) {
+  typography:{
+    h1: {
+      fontSize: theme.pxToRem(24),
+      [theme.breakpoints.up("sm")]: {
+        fontSize: theme.pxToRem(28)
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: theme.pxToRem(32)
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: theme.pxToRem(40)
+      },
+      // you can also specify a number for width
+      [theme.breakpoints.up(1920)]: {
+        fontSize: theme.pxToRem(48)
+      },
+    }
+  }
+}
+export default baseTheme
+```
 
 > Todo
 
@@ -121,7 +171,7 @@ Breakpoints are defined in the `breakpoints` key of the theme object.
 
 The `layout` key in the theme object sets a few configuration values for the header and content:
 
-```js
+```jsx
 const theme = {
   layout: {
     contentWidth: 768,
@@ -143,7 +193,7 @@ export default theme
 **Set a global override:** `/src/gatsby-theme-hyperobjekt-core/theme.js`  
 _sets a style for font smoothing on the `<html>` element for the page_
 
-```js
+```jsx
 const theme = {
   overrides: {
     MuiCssBaseline: {
@@ -161,6 +211,7 @@ export default theme
 
 #### Resources
 
+- See [sample starter theme](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/starters/gatsby-starter-hyperobjekt/src/gatsby-theme-hyperobjekt-core/theme.js) for overrides example
 - See [Globals](https://material-ui.com/customization/globals/) in the Material UI docs
 
 ### Icons
@@ -177,8 +228,8 @@ import { icons } from "gatsby-theme-hyperobjekt-core"
 import { FaBars } from "react-icons/fa"
 
 const overrideIcons = {
-  menu: MenuIcon,
   ...icons,
+  menu: MenuIcon,
 }
 
 return overrideIcons
@@ -188,3 +239,9 @@ return overrideIcons
 
 - See [Hyperobjekt Core default icons](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/themes/gatsby-theme-hyperobjekt-core/src/icons.js)
 - See [react-icons](https://react-icons.github.io/) for available icons
+
+### Dark Mode
+
+> Todo
+
+- See [sample starter theme](https://github.com/Hyperobjekt/gatsby-theme-hyperobjekt/blob/main/starters/gatsby-starter-hyperobjekt/src/gatsby-theme-hyperobjekt-core/theme.js) for dark mode example

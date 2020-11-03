@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Layout } from "gatsby-theme-hyperobjekt-core"
 
 const DefaultPagePreview = ({ entry, widgetFor }) => {
