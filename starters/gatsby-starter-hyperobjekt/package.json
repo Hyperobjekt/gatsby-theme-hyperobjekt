@@ -6,7 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "gatsby": "^2.24.58",
-    "gatsby-theme-hyperobjekt-core": "^1.0.1",
+    "gatsby-theme-hyperobjekt-core": "^1.0.2",
     "gatsby-plugin-netlify-cms": "^4.3.17",
     "netlify-cms-app": "^2.13.1",
     "react": "^16.13.1",
