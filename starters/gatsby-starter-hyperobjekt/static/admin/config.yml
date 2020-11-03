@@ -1,6 +1,7 @@
-name: github
+backend:
+  name: github
   repo: Hyperobjekt/gatsby-starter-hyperobjekt
-  branch: main
+  branch: master
 
 media_folder: static/img
 public_folder: /img
