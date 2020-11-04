@@ -37,10 +37,12 @@ const LogoImage = ({ logo, title, ...props }) => {
 const Branding = ({ classes, className, ...props }) => {
   const { logo, title } = useSiteMetadata()
   const {
-    displaySiteLogo,
-    displaySiteLogoMobile,
-    displaySiteTitle,
-    displaySiteTitleMobile,
+    header: {
+      displaySiteLogo,
+      displaySiteLogoMobile,
+      displaySiteTitle,
+      displaySiteTitleMobile,
+    },
   } = useSiteConfig()
   const theme = useTheme()
   const { width } = useWindowSize()

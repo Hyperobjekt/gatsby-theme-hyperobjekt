@@ -35,23 +35,35 @@ The core settings can be found in `/config/core.json` and specifies the configur
 {
   "contentPath": "content/pages", // location of page content
   "assetPath": "content/assets", // location of assets accessed in content (e.g. images, videos, etc)
-  "displaySiteLogo": true, // true to display a logo in the header, false for no logo
-  "displaySiteTitle": false, // true to display a site title in the header, false for no site title
-  "displaySiteLogoMobile": true, // true to display site logo on mobile, false to hide logo on mobile
-  "displaySiteTitleMobile": false, // true to display site title on mobile, false to hide site title on mobile
-  "useStickyHeader": true, // true to have header stick to the top of the window on scroll
-  "useShrinkHeader": true, // true to shrink the header once the page is scrolled
+  "header": {
+    "displaySiteLogo": true, // true to display a logo in the header, false for no logo
+    "displaySiteTitle": false, // true to display a site title in the header, false for no site title
+    "displaySiteLogoMobile": true, // true to display site logo on mobile, false to hide logo on mobile
+    "displaySiteTitleMobile": false, // true to display site title on mobile, false to hide site title on mobile
+    "useStickyHeader": true, // true to have header stick to the top of the window on scroll
+    "useShrinkHeader": true, // true to shrink the header once the page is scrolled
+    "mobileMenuBreakpoint": 768, // breakpoint where navigation switches to desktop nav
+    "headerContentMaxWidth": 960, // max width for header content
+    "headerHeight": 80, // default height for header
+    "shrinkHeaderHeight": 56, // header height when it is shrunk
+    "shrinkOffset": -32 // how far to scroll before activating shrunk header
+  },
   "useSocialLinks": true, // true to display social links on the site
-  "useDarkMode": true, // true to enable toggle between dark / light themese
+  "useDarkMode": true, // true to enable toggle between dark / light themes
   "useKatex": false, // true to enable mathemtics typesetting
+  "contentMaxWidth": 768, // max width for content on content pages
   "remarkImagesWidth": 1440, // width to scale down content images to
-  "mobileMenuBreakpoint": 768, // breakpoint where navigation switches to desktop nav
-  "webFontsConfig": { // configuration outlining which web fonts to load from google
-    "fonts": {
-      "google": [
-        { "family": "Montserrat", "variants": ["300", "400", "500"] },
-      ]
-    }
+  "fonts": { // configuration outlining which web fonts to load from google
+    "google": [
+      {
+        "family": "Montserrat", // font family to load
+        "variants": ["300", "400", "500"] // weight variants
+      },
+    ]
+  },
+  "responsiveFontSizes": {
+    "breakpoints": ["sm", "md", "lg"], // breakpoints where fonts should scale
+    "factor": 2 // higher the value, the less difference there is between font sizes on small screens (must be greater than 1)
   }
 }
 

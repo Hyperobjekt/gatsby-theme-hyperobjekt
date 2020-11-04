@@ -12,7 +12,6 @@ This acts as a core theme on which all other themes are based. It houses a basic
 | `displaySiteLogoMobile`  | true or false | Defaults to true, controls whether the logo is displayed at the mobile breakpoint           |
 | `displaySiteTitle`       | true or false | Defaults to true, controls whether the site title is displayed                              |
 | `displaySiteTitleMobile` | true or false | Defaults to true, controls whether the site title is displayed at the mobile breakpoint     |
-| `invertLogo`             | true or false | Defaults to false, controls whether the logo is inverted when the mobile menu is open       |
 | `useStickyHeader`        | true or false | Defaults to false, controls whether the header is sticky or static                          |
 | `useShrinkHeader`        | true or false | Defaults to false, controls whether the header shrinks on scroll                            |
 | `useSocialLinks`         | true or false | Defaults to true, controls whether the social links are displayed or not                    |
@@ -26,10 +25,33 @@ Example Config:
    {
       resolve: `gatsby-theme-hyperobjekt-core`,
       options: {
-        displaySiteLogo: true,
-        displaySiteTitle: true,
-        invertLogo: true,
-        useStickyHeader: true,
+        "contentPath": "content/pages",
+        "assetPath": "content/assets",
+        "header": {
+          "displaySiteLogo": true,
+          "displaySiteTitle": false,
+          "displaySiteLogoMobile": true,
+          "displaySiteTitleMobile": false,
+          "useStickyHeader": true,
+          "useShrinkHeader": true,
+          "mobileMenuBreakpoint": 768,
+          "headerContentMaxWidth": 960,
+          "headerHeight": 80,
+          "shrinkHeaderHeight": 56,
+          "shrinkOffset": -32
+        },
+        "useSocialLinks": true,
+        "useDarkMode": true,
+        "useKatex": false,
+        "contentMaxWidth": 768,
+        "remarkImagesWidth": 1440,
+        "fonts": {
+          "google": [
+            { "family": "Montserrat", "variants": ["300", "400", "500", "700"] },
+            { "family": "Nunito", "variants": ["300", "400", "500"] },
+            { "family": "Fira Mono", "variants": ["400"] }
+          ]
+        }
       }
     }
 ```

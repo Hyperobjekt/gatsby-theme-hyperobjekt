@@ -115,7 +115,7 @@ module.exports = (themeOptions) => {
       {
         resolve: `gatsby-theme-material-ui`,
         options: {
-          webFontsConfig: options.webFontsConfig,
+          webFontsConfig: { fonts: options.fonts },
         },
       },
       `gatsby-plugin-mdx-embed`,

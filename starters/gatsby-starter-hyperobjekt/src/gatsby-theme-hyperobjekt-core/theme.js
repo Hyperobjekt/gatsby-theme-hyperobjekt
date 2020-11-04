@@ -1,25 +1,18 @@
 import { createMuiTheme } from "@material-ui/core"
+import { blue } from "@material-ui/core/colors"
 import { deepmerge } from "@material-ui/utils"
 
 /**
  * Base theme definitions
  */
 const base = {
-  layout: {
-    contentWidth: 768,
-    headerHeight: 80,
-    shrinkHeaderHeight: 56,
-    shrinkOffset: -32,
-  },
   palette: {
     primary: {
       light: "#122039",
       main: "#021029",
       dark: "#080c1c",
     },
-    secondary: {
-      main: "#bd00f2",
-    },
+    secondary: blue,
   },
   typography: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -66,7 +59,7 @@ const darkTheme = {
  * A function that accepts site context (currently only `isDarkMode`)
  * and returns a theme object that is applied to the site.
  */
-const HyperobjektTheme = ({ isDarkMode }) => {
+const HyperobjektTheme = ({ isDarkMode = false }) => {
   // base theme with dark overrides if it's in dark mode
   const baseTheme = deepmerge(base, isDarkMode ? darkTheme : {})
   // create a base theme to utilize theme values and functions

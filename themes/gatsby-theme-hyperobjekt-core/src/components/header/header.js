@@ -46,6 +46,9 @@ export const styles = (theme) => ({
   },
   title: {},
   logo: {},
+  offset: {
+    height: theme.layout.headerHeight,
+  },
 })
 
 /**
@@ -61,7 +64,9 @@ const SiteHeader = ({ classes, children, ...props }) => {
   // state indicating if the header is "stuck"
   const [stuck, setStuck] = useState(false)
   // pull header configuration
-  const { useStickyHeader, useShrinkHeader } = useSiteConfig()
+  const {
+    header: { useStickyHeader, useShrinkHeader },
+  } = useSiteConfig()
   const { useMobileMenu } = useContext(SiteContext)
   const {
     layout: { shrinkOffset },
@@ -82,31 +87,34 @@ const SiteHeader = ({ classes, children, ...props }) => {
   })
 
   return (
-    <AppBar
-      className={clsx("header", classes.root, {
-        "header--shrunk": shrink,
-        [classes.shrunk]: shrink,
-        "header--stuck": stuck,
-        [classes.stuck]: stuck,
-      })}
-      position={useStickyHeader ? "sticky" : "static"}
-      {...props}
-    >
-      <Toolbar className={clsx("header__toolbar", classes.toolbar)}>
-        <Branding
-          classes={{
-            root: clsx("header__branding", classes.branding),
-            title: classes.title,
-            logo: classes.logo,
-          }}
-        />
-        {children}
-        {!useMobileMenu && (
-          <DesktopNavigation subMenu filter={headerLinkFilter} />
-        )}
-        <NavigationIcons />
-      </Toolbar>
-    </AppBar>
+    <React.Fragment>
+      <AppBar
+        className={clsx("header", classes.root, {
+          "header--shrunk": shrink,
+          [classes.shrunk]: shrink,
+          "header--stuck": stuck,
+          [classes.stuck]: stuck,
+        })}
+        position={useStickyHeader ? "fixed" : "static"}
+        {...props}
+      >
+        <Toolbar className={clsx("header__toolbar", classes.toolbar)}>
+          <Branding
+            classes={{
+              root: clsx("header__branding", classes.branding),
+              title: classes.title,
+              logo: classes.logo,
+            }}
+          />
+          {children}
+          {!useMobileMenu && (
+            <DesktopNavigation subMenu filter={headerLinkFilter} />
+          )}
+          <NavigationIcons />
+        </Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
   )
 }
 

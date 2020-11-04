@@ -1,17 +1,17 @@
-backend:
-  name: github
-  repo: Hyperobjekt/gatsby-starter-hyperobjekt
-  branch: master
+# backend:
+#   name: github
+#   repo: Hyperobjekt/gatsby-starter-hyperobjekt
+#   branch: master
 
 # FOR LOCAL DEVELOPMENT:
 # ---
 # - uncomment the backend below
 # - run `npx netlify-cms-proxy-server` to serve content
 
-# backend:
-#   name: proxy
-#   proxy_url: http://localhost:8081/api/v1
-#   branch: main # optional, defaults to master
+backend:
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
+  branch: main # optional, defaults to master
 
 media_folder: /content/assets
 public_folder: /assets
@@ -158,95 +158,132 @@ collections:
               default: "content/assets",
             }
           - {
-              label: "Show Site Logo",
-              name: "displaySiteLogo",
-              widget: "boolean",
-              default: true,
-            }
-          - {
-              label: "Show Site Logo (Mobile)",
-              name: "displaySiteLogoMobile",
-              widget: "boolean",
-              default: true,
-            }
-          - {
-              label: "Show Site Title",
-              name: "displaySiteTitle",
-              widget: "boolean",
-              default: false,
-            }
-          - {
-              label: "Show Site Title (Mobile)",
-              name: "displaySiteTitleMobile",
-              widget: "boolean",
-              default: false,
-            }
-          - {
-              label: "Sticky Header",
-              name: "useStickyHeader",
-              widget: "boolean",
-              default: true,
-            }
-          - {
-              label: "Shrink Header",
-              name: "useShrinkHeader",
-              widget: "boolean",
-              default: true,
+              label: "Header",
+              name: "header",
+              widget: "object",
+              fields:
+                [
+                  {
+                    label: "Show Site Logo",
+                    name: "displaySiteLogo",
+                    widget: "boolean",
+                    default: true,
+                  },
+                  {
+                    label: "Show Site Logo (Mobile)",
+                    name: "displaySiteLogoMobile",
+                    widget: "boolean",
+                    default: true,
+                  },
+                  {
+                    label: "Show Site Title",
+                    name: "displaySiteTitle",
+                    widget: "boolean",
+                    default: false,
+                  },
+                  {
+                    label: "Show Site Title (Mobile)",
+                    name: "displaySiteTitleMobile",
+                    widget: "boolean",
+                    default: false,
+                  },
+                  {
+                    label: "Sticky Header",
+                    name: "useStickyHeader",
+                    widget: "boolean",
+                    default: true,
+                    hint: "turn on to have the header stay in the viewport when scrolling",
+                  },
+                  {
+                    label: "Shrink Header",
+                    name: "useShrinkHeader",
+                    widget: "boolean",
+                    default: true,
+                    hint: "turn on to enable shrinking the header once the page is scrolled",
+                  },
+                  {
+                    label: "Mobile Menu Breakpoint",
+                    name: "mobileMenuBreakpoint",
+                    widget: "number",
+                    default: 768,
+                    hint: "width where the mobile menu switches to desktop menu",
+                  },
+                  {
+                    label: "Header Content Max Width",
+                    name: "headerContentMaxWidth",
+                    widget: "number",
+                    default: 960,
+                    hint: "maximum width of content within the header bar",
+                  },
+                  {
+                    label: "Header Height",
+                    name: "headerHeight",
+                    widget: "number",
+                    default: 80,
+                    hint: "default height for header",
+                  },
+                  {
+                    label: "Shrunk Header Height",
+                    name: "shrinkHeaderHeight",
+                    widget: "number",
+                    default: 56,
+                    hint: "header height when it is shrunk",
+                  },
+                  {
+                    label: "Shrink Offset",
+                    name: "shrinkOffset",
+                    widget: "number",
+                    default: -32,
+                    hint: "how far down the page to scroll before shrinking the header",
+                  },
+                ],
             }
           - {
               label: "Dark Mode Enabled",
               name: "useDarkMode",
               widget: "boolean",
               default: true,
+              hint: "turn on to enable toggle between dark / light themes",
             }
           - {
               label: "Use KaTeX",
               name: "useKatex",
               widget: "boolean",
               default: false,
+              hint: "determined if mathematics typesetting is enabled",
+            }
+          - {
+              label: "Content Max Width",
+              name: "contentMaxWidth",
+              widget: "number",
+              default: 768,
+              hint: "max width for content on content pages",
             }
           - {
               label: "Resize Image Width",
               name: "remarkImagesWidth",
               widget: "number",
               default: 1440,
+              hint: "width to scale down content images to",
             }
           - {
-              label: "Mobile Menu Breakpoint",
-              name: "mobileMenuBreakpoint",
-              widget: "number",
-              default: 768,
-            }
-          - {
-              label: "Fonts Loader",
-              name: "webFontsConfig",
+              label: "Fonts",
+              name: "fonts",
               widget: "object",
               fields:
                 [
                   {
-                    label: "Fonts",
-                    name: "fonts",
-                    widget: "object",
+                    label: "Google Fonts",
+                    name: "google",
+                    widget: "list",
                     fields:
                       [
                         {
-                          label: "Google Fonts",
-                          name: "google",
-                          widget: "list",
-                          fields:
-                            [
-                              {
-                                label: "Font Family",
-                                name: "family",
-                                widget: "string",
-                              },
-                              {
-                                label: "Variants",
-                                name: "variants",
-                                widget: "list",
-                              },
-                            ],
+                          label: "Font Family",
+                          name: "family",
+                          widget: "string",
                         },
+                        { label: "Variants", name: "variants", widget: "list" },
                       ],
                   },
                 ],

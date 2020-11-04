@@ -1,15 +1,7 @@
 import React from "react"
-import { SiteProvider } from "./src/utils/site-context"
-import { MDXProvider } from "@mdx-js/react"
-import MDXComponents from "./src/components/mdx"
+import Providers from "./src/components/providers"
 
-export const wrapRootElement = ({ element }) => {
-  return (
-    <SiteProvider>
-      <MDXProvider components={MDXComponents}>{element}</MDXProvider>
-    </SiteProvider>
-  )
-}
+export const wrapRootElement = ({ element }) => <Providers>{element}</Providers>
 
 export const onRouteUpdate = ({ location, prevLocation }) => {
   if (prevLocation !== null) {

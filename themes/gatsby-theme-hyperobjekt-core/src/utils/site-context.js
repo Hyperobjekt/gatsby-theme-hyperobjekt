@@ -8,7 +8,9 @@ export const SiteProvider = ({ children }) => {
   // navigation state / setter
   const [isNavOpen, setIsNavOpen] = useState(false)
   // mobile menu state
-  const { mobileMenuBreakpoint } = useSiteConfig()
+  const {
+    header: { mobileMenuBreakpoint },
+  } = useSiteConfig()
   const { width } = useWindowSize()
   const useMobileMenu = width < mobileMenuBreakpoint
   // home page state / setter

@@ -83,36 +83,33 @@ exports.createSchemaCustomization = ({ actions }) => {
   type siteConfig implements Node {
     contentPath: String!
     assetPath: String!
+    header: HeaderOptions!
+    useSocialLinks: Boolean!
+    useDarkMode: Boolean!
+    useKatex: Boolean!
+    contentMaxWidth: Int!
+    responsiveFontSizes: ResponsiveFontSizes
+  }
+  type HeaderOptions {
     displaySiteLogo: Boolean!
     displaySiteTitle: Boolean!
     displaySiteLogoMobile: Boolean!
     displaySiteTitleMobile: Boolean!
-    invertSiteLogo: Boolean!
-    mobileMenuBreakpoint: String!
     useStickyHeader: Boolean!
     useShrinkHeader: Boolean!
-    useSocialLinks: Boolean!
-    useDarkMode: Boolean!
-    useKatex: Boolean!
+    mobileMenuBreakpoint: Int!
+    headerContentMaxWidth: Int!
+    headerHeight: Int!
+    shrinkHeaderHeight: Int!
+    shrinkOffset: Int!
+  }
+  type ResponsiveFontSizes {
+    breakpoints: [String],
+    factor: Int!
   }
   `
   createTypes(subMenuTypeDefs)
   createTypes(siteConfigTypeDef)
-  // createTypes(`type siteConfig implements Node {
-  //   contentPath: String!
-  //   assetPath: String!
-  //   displaySiteLogo: Boolean!
-  //   displaySiteTitle: Boolean!
-  //   displaySiteLogoMobile: Boolean!
-  //   displaySiteTitleMobile: Boolean!
-  //   invertSiteLogo: Boolean!
-  //   mobileMenuBreakpoint: String!
-  //   useStickyHeader: Boolean!
-  //   useShrinkHeader: Boolean!
-  //   useSocialLinks: Boolean!
-  //   useDarkMode: Boolean!
-  //   useKatex: Boolean!
-  // }`)
 }
 
 exports.sourceNodes = (
@@ -120,34 +117,39 @@ exports.sourceNodes = (
   {
     contentPath = "content/pages",
     assetPath = "content/assets",
-    displaySiteLogo = true,
-    displaySiteTitle = true,
-    displaySiteLogoMobile = true,
-    displaySiteTitleMobile = true,
-    invertSiteLogo = false,
-    mobileMenuBreakpoint = 768,
-    useStickyHeader = false,
-    useShrinkHeader = false,
+    header = {
+      displaySiteLogo: true,
+      displaySiteTitle: false,
+      displaySiteLogoMobile: true,
+      displaySiteTitleMobile: false,
+      useStickyHeader: true,
+      useShrinkHeader: true,
+      mobileMenuBreakpoint: 768,
+      headerContentMaxWidth: 960,
+      headerHeight: 80,
+      shrinkHeaderHeight: 56,
+      shrinkOffset: -32,
+    },
     useSocialLinks = true,
     useDarkMode = true,
     useKatex = false,
+    contentMaxWidth = 768,
+    responsiveFontSizes = {
+      breakpoints: ["sm", "md", "lg"],
+      factor: 2,
+    },
   }
 ) => {
   // create garden data from plugin config
   const siteConfigFieldData = {
     contentPath,
     assetPath,
-    displaySiteLogo,
-    displaySiteTitle,
-    displaySiteLogoMobile,
-    displaySiteTitleMobile,
-    invertSiteLogo,
-    mobileMenuBreakpoint,
-    useStickyHeader,
-    useShrinkHeader,
+    header,
     useSocialLinks,
     useDarkMode,
     useKatex,
+    contentMaxWidth,
+    responsiveFontSizes,
   }
   createNode({
     ...siteConfigFieldData,

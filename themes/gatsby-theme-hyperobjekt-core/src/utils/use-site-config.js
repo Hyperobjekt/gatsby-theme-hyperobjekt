@@ -6,16 +6,26 @@ export const useSiteConfig = () => {
         siteConfig {
           contentPath
           assetPath
-          displaySiteLogo
-          displaySiteTitle
-          displaySiteLogoMobile
-          displaySiteTitleMobile
-          invertSiteLogo
-          mobileMenuBreakpoint
-          useStickyHeader
-          useShrinkHeader
+          header {
+            displaySiteLogo
+            displaySiteTitle
+            displaySiteLogoMobile
+            displaySiteTitleMobile
+            useStickyHeader
+            useShrinkHeader
+            mobileMenuBreakpoint
+            headerContentMaxWidth
+            headerHeight
+            shrinkHeaderHeight
+            shrinkOffset
+          }
           useSocialLinks
           useDarkMode
+          contentMaxWidth
+          responsiveFontSizes {
+            breakpoints
+            factor
+          }
         }
       }
     `
