@@ -11,7 +11,13 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const SubNavigation = ({ links, className, classes: overrides, ...props }) => {
+const SubNavigation = ({
+  links,
+  className,
+  classes: overrides,
+  onSelect,
+  ...props
+}) => {
   const classes = useStyles()
   return (
     <List
@@ -30,6 +36,7 @@ const SubNavigation = ({ links, className, classes: overrides, ...props }) => {
           <Link
             className={clsx("nav__sub-link", classes.link, overrides.link)}
             activeClassName="active"
+            onClick={onSelect}
             to={menuItem.link}
           >
             {menuItem.name}
@@ -43,6 +50,7 @@ const SubNavigation = ({ links, className, classes: overrides, ...props }) => {
 SubNavigation.defaultProps = {
   classes: {},
   links: [],
+  onSelect: () => {},
 }
 
 export default SubNavigation

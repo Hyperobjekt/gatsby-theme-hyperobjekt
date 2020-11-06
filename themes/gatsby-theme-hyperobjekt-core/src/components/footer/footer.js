@@ -99,4 +99,4 @@ const SiteFooter = ({ className, classes, children, ...props }) => {
   )
 }
 
-export default withStyles(styles)(SiteFooter)
+export default withStyles(styles, { name: "HypFooter" })(SiteFooter)

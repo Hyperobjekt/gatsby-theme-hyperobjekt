@@ -1,9 +1,10 @@
-// This is a placeholder for latent shadowing in sibling themes
 import React, { useContext, useState } from "react"
 import PropTypes from "prop-types"
 import { AppBar, Toolbar, useTheme, withStyles } from "@material-ui/core"
 import Branding from "./branding"
 import DesktopNavigation from "./nav-desktop"
+import MobileNavigation from "./nav-mobile"
+
 import NavigationIcons from "./nav-icons"
 import { SiteContext } from "../../utils/site-context"
 import { useSiteConfig } from "../../utils/use-site-config"
@@ -44,8 +45,17 @@ export const styles = (theme) => ({
     color: theme.palette.primary.contrastText,
     marginRight: "auto",
   },
+  /** Styles for desktop navigation */
+  nav: {},
+  /** Styles for mobile navigation  */
+  mobileNav: {},
+  /** Styles for menu button */
+  menuButton: {},
+  /** Styles for site title */
   title: {},
+  /** Styles for site logo */
   logo: {},
+  /** Styles for fixed header offset */
   offset: {
     height: theme.layout.headerHeight,
   },
@@ -108,12 +118,21 @@ const SiteHeader = ({ classes, children, ...props }) => {
           />
           {children}
           {!useMobileMenu && (
-            <DesktopNavigation subMenu filter={headerLinkFilter} />
+            <DesktopNavigation
+              className={clsx("header__nav", classes.nav)}
+              subMenu
+              filter={headerLinkFilter}
+            />
           )}
           <NavigationIcons />
+          {useMobileMenu && (
+            <MobileNavigation
+              classes={{ button: classes.menuButton, nav: classes.mobileNav }}
+            />
+          )}
         </Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      {useStickyHeader && <div className={classes.offset} />}
     </React.Fragment>
   )
 }

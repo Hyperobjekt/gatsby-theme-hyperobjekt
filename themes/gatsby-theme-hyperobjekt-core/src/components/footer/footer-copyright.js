@@ -27,4 +27,6 @@ FooterCopyright.propTypes = {
   className: PropTypes.string,
 }
 
-export default withStyles(styles)(FooterCopyright)
+export default withStyles(styles, { name: "HypFooterCopyright" })(
+  FooterCopyright
+)

@@ -45,11 +45,11 @@
     {
       "name": "Twitter",
       "link": "https://twitter.com/hyperobjekt",
-      "location": "header"
+      "location": "footer"
     },
     {
       "name": "Github",
-      "link": "https://www.github.com/hyperobjekt",
+      "link": "https://www.github.com/Hyperobjekt/gatsby-theme-hyperobjekt",
       "location": "all"
     }
   ]

@@ -50,6 +50,7 @@ const Navigation = ({
   className,
   component: Component = "nav",
   subMenu = false,
+  onSelect,
   filter,
   ...props
 }) => {
@@ -66,6 +67,7 @@ const Navigation = ({
             <Link
               className={clsx("nav__link", classes.link)}
               activeClassName="active"
+              onClick={onSelect}
               to={menuItem.link}
             >
               {menuItem.name}
@@ -78,6 +80,7 @@ const Navigation = ({
                   link: classes.subMenuLink,
                   listItem: classes.subMenuListItem,
                 }}
+                onSelect={onSelect}
                 links={menuItem.subMenu}
               />
             )}
@@ -90,6 +93,7 @@ const Navigation = ({
 
 Navigation.defaultProps = {
   filter: (link) => link.location === "all",
+  onSelect: () => {},
 }
 
 Navigation.propTypes = {

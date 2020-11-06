@@ -30,4 +30,11 @@ export default {
       scrollBehavior: "auto !important",
     },
   },
+  html: {
+    lineHeight: 1.15 /* 1 */,
+    "-webkitTextSizeAdjust": "100%" /* 2 */,
+    boxSizing: "border-box",
+    overflowX: "hidden",
+    scrollBehavior: "smooth",
+  },
 }

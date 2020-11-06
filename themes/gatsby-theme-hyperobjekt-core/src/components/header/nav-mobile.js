@@ -1,12 +1,19 @@
 import React, { useContext } from "react"
-import { IconButton } from "@material-ui/core"
+import { IconButton, withStyles } from "@material-ui/core"
 import { SiteContext } from "../../utils/site-context"
 import Navigation from "./nav"
 import Drawer from "../drawer"
 import icons from "../../icons"
 import { headerLinkFilter } from "./header"
+import clsx from "clsx"
 
-const MenuCollapsed = (props) => {
+const styles = (theme) => ({
+  button: {},
+  drawer: {},
+  nav: {},
+})
+
+const MenuCollapsed = ({ classes, className, ...props }) => {
   const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
   const MenuIcon = icons["menu"]
 
@@ -25,11 +32,21 @@ const MenuCollapsed = (props) => {
         color="inherit"
         aria-label="menu"
         onClick={handleMenuOpen}
+        className={clsx(classes.button, className)}
       >
         <MenuIcon />
       </IconButton>
-      <Drawer open={isNavOpen} onClose={handleMenuClose}>
-        <Navigation filter={headerLinkFilter} subMenu />
+      <Drawer
+        className={clsx(classes.drawer)}
+        open={isNavOpen}
+        onClose={handleMenuClose}
+      >
+        <Navigation
+          className={clsx("nav--mobile", classes.nav)}
+          filter={headerLinkFilter}
+          onSelect={handleMenuClose}
+          subMenu
+        />
       </Drawer>
     </React.Fragment>
   )
@@ -37,4 +54,6 @@ const MenuCollapsed = (props) => {
 
 MenuCollapsed.propTypes = {}
 
-export default MenuCollapsed
+export default withStyles(styles, { name: "HypMobileNavigation" })(
+  MenuCollapsed
+)

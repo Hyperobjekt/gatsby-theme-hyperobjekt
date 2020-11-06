@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { useSiteConfig } from "../../utils/use-site-config"
-import { SiteContext } from "../../utils/site-context"
 import DarkModeToggle from "./dark-mode-toggle"
-import MobileNavigation from "./nav-mobile"
 import clsx from "clsx"
+import SocialLinks from "../social/social-links"
+
 import { withStyles } from "@material-ui/core"
 const styles = (theme) => ({
   root: {
@@ -18,7 +18,6 @@ const styles = (theme) => ({
 
 const NavIcons = ({ classes, className, ...props }) => {
   const { useDarkMode } = useSiteConfig()
-  const { useMobileMenu } = useContext(SiteContext)
   return (
     <div className={clsx("nav__icons", classes.root, className)} {...props}>
       {useDarkMode && (
@@ -27,7 +26,7 @@ const NavIcons = ({ classes, className, ...props }) => {
           className={classes.darkModeToggle}
         />
       )}
-      {useMobileMenu && <MobileNavigation />}
+      <SocialLinks location="header" {...props} />
     </div>
   )
 }

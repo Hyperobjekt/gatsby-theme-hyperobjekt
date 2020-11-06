@@ -12,7 +12,6 @@ export default function useCustomTheme(theme) {
   // pull necessary configuration for the theme
   const { isDarkMode } = useContext(SiteContext)
   const config = useSiteConfig()
-  console.log(config)
 
   const {
     headerHeight,
