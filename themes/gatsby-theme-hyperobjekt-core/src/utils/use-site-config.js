@@ -21,6 +21,8 @@ export const useSiteConfig = () => {
           }
           useSocialLinks
           useDarkMode
+          useKatex
+          typekitId
           contentMaxWidth
           responsiveFontSizes {
             breakpoints
