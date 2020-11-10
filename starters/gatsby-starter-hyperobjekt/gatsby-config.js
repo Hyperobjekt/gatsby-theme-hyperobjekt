@@ -5,7 +5,12 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-theme-hyperobjekt-core`,
-      options: coreOptions,
+      options: {
+        ...coreOptions,
+        templates: {
+          home: require.resolve(`./src/templates/home.js`),
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,

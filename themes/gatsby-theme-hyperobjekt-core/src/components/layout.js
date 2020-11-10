@@ -7,20 +7,20 @@ import Main from "./layout/main"
 import Content from "./layout/content"
 import Footer from "./footer/footer"
 import { SiteContext } from "../utils/site-context"
-import SEO from "./seo"
-const Layout = ({ children, ...props }) => {
+import Helmet from "./helmet"
+const Layout = ({
+  title,
+  description,
+  keywords,
+  image,
+  lang,
+  isBlogPost,
+  location: fmLocation,
+  children,
+  ...props
+}) => {
   const { isHome, setIsHome } = useContext(SiteContext) // eslint-disable-line
   const location = useLocation()
-  // pull SEO from frontmatter
-  const {
-    title,
-    description,
-    keywords,
-    image,
-    lang,
-    isBlogPost,
-    location: fmLocation,
-  } = props.pageContext.frontmatter
   // add classes based on the page location
   const pageClasses = isHome
     ? "page--home"
@@ -38,8 +38,8 @@ const Layout = ({ children, ...props }) => {
     }
   }, []) // eslint-disable-line
   return (
-    <Page className={pageClasses}>
-      <SEO
+    <Page className={pageClasses} {...props}>
+      <Helmet
         {...{
           title,
           description,

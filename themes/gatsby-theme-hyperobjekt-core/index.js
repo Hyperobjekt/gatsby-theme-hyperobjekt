@@ -1,4 +1,4 @@
-export { default as SEO } from "./src/utils/seo"
+export { default as Helmet } from "./src/components/helmet"
 export { default as Layout } from "./src/components/layout"
 export { SiteContext } from "./src/utils/site-context"
 export { useSiteConfig } from "./src/utils/use-site-config"

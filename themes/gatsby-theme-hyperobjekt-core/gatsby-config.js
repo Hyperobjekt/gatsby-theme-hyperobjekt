@@ -84,17 +84,11 @@ module.exports = (themeOptions) => {
         },
       },
       {
-        resolve: `gatsby-plugin-page-creator`,
-        options: {
-          path: options.contentPath || `content/pages`,
-        },
-      },
-      {
         resolve: `gatsby-plugin-mdx`,
         options: {
           extensions: [`.md`, `.mdx`],
           defaultLayouts: {
-            default: require.resolve("./src/components/layout.js"),
+            default: require.resolve("./src/templates/default.js"),
           },
           gatsbyRemarkPlugins: gatsbyRemarkPlugins,
           remarkPlugins: remarkPlugins,
@@ -118,16 +112,16 @@ module.exports = (themeOptions) => {
           webFontsConfig: { fonts: options.fonts },
         },
       },
-      `gatsby-plugin-mdx-embed`,
-      `gatsby-plugin-sitemap`,
-      `gatsby-plugin-robots-txt`,
-      `gatsby-plugin-react-helmet`,
-      `gatsby-transformer-sharp`,
-      `gatsby-transformer-yaml`,
-      `gatsby-transformer-json`,
-      `gatsby-plugin-sharp`,
-      `gatsby-plugin-catch-links`,
-      `gatsby-plugin-offline`,
+      { resolve: `gatsby-plugin-mdx-embed` },
+      { resolve: `gatsby-plugin-sitemap` },
+      { resolve: `gatsby-plugin-robots-txt` },
+      { resolve: `gatsby-plugin-react-helmet` },
+      { resolve: `gatsby-transformer-sharp` },
+      { resolve: `gatsby-transformer-yaml` },
+      { resolve: `gatsby-transformer-json` },
+      { resolve: `gatsby-plugin-sharp` },
+      { resolve: `gatsby-plugin-catch-links` },
+      { resolve: `gatsby-plugin-offline` },
     ].filter(Boolean),
   }
 }

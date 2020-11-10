@@ -57,7 +57,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     },
   })
 
-  // Type defination for the submenu to ensure there is always a submenu array to query
+  // Type definition for the submenu to ensure there is always a submenu array to query
   const subMenuTypeDefs = `
     type Site implements Node @infer {
       siteMetadata: SiteMetadata
@@ -87,6 +87,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     useSocialLinks: Boolean!
     useDarkMode: Boolean!
     useKatex: Boolean!
+    typekitId: String
     contentMaxWidth: Int!
     responsiveFontSizes: ResponsiveFontSizes
   }
@@ -108,8 +109,20 @@ exports.createSchemaCustomization = ({ actions }) => {
     factor: Int!
   }
   `
+  const frontmatterTypeDefs = `
+    type MdxFrontmatter implements Node {
+      image: String
+      title: String
+      description: String
+      keywords: [String]
+      lang: String
+      isBlogPost: Boolean
+      template: String
+    }
+  `
   createTypes(subMenuTypeDefs)
   createTypes(siteConfigTypeDef)
+  createTypes(frontmatterTypeDefs)
 }
 
 exports.sourceNodes = (
@@ -133,6 +146,7 @@ exports.sourceNodes = (
     useSocialLinks = true,
     useDarkMode = true,
     useKatex = false,
+    typekitId = null,
     contentMaxWidth = 768,
     responsiveFontSizes = {
       breakpoints: ["sm", "md", "lg"],
@@ -148,6 +162,7 @@ exports.sourceNodes = (
     useSocialLinks,
     useDarkMode,
     useKatex,
+    typekitId,
     contentMaxWidth,
     responsiveFontSizes,
   }
@@ -162,5 +177,44 @@ exports.sourceNodes = (
       content: JSON.stringify(siteConfigFieldData),
       description: `Site Config`,
     },
+  })
+}
+
+exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
+  const result = await graphql(`
+    query {
+      allMdx {
+        nodes {
+          frontmatter {
+            path
+            title
+            description
+            keywords
+            image
+            lang
+            isBlogPost
+            template
+          }
+        }
+      }
+    }
+  `)
+  if (result.errors) {
+    reporter.panic("failed to create posts ", result.errors)
+  }
+  const pages = result.data.allMdx.nodes
+  pages.forEach((page) => {
+    const templateKey = page.frontmatter.template || "default"
+    const component =
+      themeOptions.templates[templateKey] ||
+      require.resolve(`./src/templates/default.js`)
+    actions.createPage({
+      path: page.frontmatter.path,
+      component: component,
+      context: {
+        pathSlug: page.frontmatter.path,
+        frontmatter: page.frontmatter,
+      },
+    })
   })
 }

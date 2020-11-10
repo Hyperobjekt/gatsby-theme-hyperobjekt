@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core"
 import { styled } from "@material-ui/core/styles"
 import Hero from "./hero"
-import SEO from "./seo"
+import Helmet from "./helmet"
 import Block from "./block"
 import CodeBlock from "./code-block"
 
@@ -95,7 +95,7 @@ export const CodeInline = styled("code")({
 })
 
 export default {
-  SEO,
+  Helmet,
   Hero,
   section: Block,
   h1: H1,

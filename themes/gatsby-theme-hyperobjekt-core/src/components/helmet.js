@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import { Helmet as ReactHelmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useSiteConfig } from "../utils/use-site-config"
 import { useSiteMetadata } from "../utils/use-site-metadata"
 
-const SEO = ({
+const Helmet = ({
   description: propDescription,
   lang,
   meta,
@@ -14,6 +14,7 @@ const SEO = ({
   title: propTitle,
   image: propImage,
   isBlogPost,
+  children,
 }) => {
   const {
     title,
@@ -23,7 +24,7 @@ const SEO = ({
     siteUrl,
     seoImage,
   } = useSiteMetadata()
-  const { useKatex } = useSiteConfig()
+  const { useKatex, typekitId } = useSiteConfig()
   const location = useLocation()
   const seoTitle = propTitle || title
   const seoDescription = propDescription || description
@@ -32,7 +33,7 @@ const SEO = ({
   const seoImgSrc = `${siteUrl}${seoImg.src}`
   const seoCanononical = propLocation || location.pathname
   return (
-    <Helmet
+    <ReactHelmet
       htmlAttributes={{
         lang,
       }}
@@ -125,17 +126,24 @@ const SEO = ({
           crossorigin="anonymous"
         />
       )}
-    </Helmet>
+      {typekitId && (
+        <link
+          rel="stylesheet"
+          href={`https://use.typekit.net/${typekitId}.css`}
+        ></link>
+      )}
+      {children}
+    </ReactHelmet>
   )
 }
 
-SEO.defaultProps = {
+Helmet.defaultProps = {
   lang: `en`,
   meta: [],
   isBlogPost: false,
 }
 
-SEO.propTypes = {
+Helmet.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
@@ -144,4 +152,4 @@ SEO.propTypes = {
   isBlogPost: PropTypes.bool,
 }
 
-export default SEO
+export default Helmet
