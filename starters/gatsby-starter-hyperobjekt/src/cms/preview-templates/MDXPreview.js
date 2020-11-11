@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import MDX from "mdx-scoped-runtime"
-import mdxComponents from "gatsby-theme-hyperobjekt-core/src/components/mdx"
+import { mdxComponents } from "gatsby-theme-hyperobjekt-core"
 import Colors from "../../components/colors"
 const MDXPreview = ({ entry }) => {
   const { Hero, Helmet, ...components } = mdxComponents

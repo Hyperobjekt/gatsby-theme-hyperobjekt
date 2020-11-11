@@ -1,8 +1,7 @@
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
-import Layout from "gatsby-theme-hyperobjekt-core/src/components/layout"
-import Hero from "gatsby-theme-hyperobjekt-core/src/components/hero"
-import Block from "gatsby-theme-hyperobjekt-core/src/components/block"
+import { Layout, Hero, Block } from "gatsby-theme-hyperobjekt-core"
+import { graphql } from "gatsby"
 
 export const query = graphql`
   query($pathSlug: String!) {
