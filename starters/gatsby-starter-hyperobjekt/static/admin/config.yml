@@ -1,17 +1,17 @@
-# backend:
-#   name: github
-#   repo: Hyperobjekt/gatsby-starter-hyperobjekt
-#   branch: master
+backend:
+  name: github
+  repo: Hyperobjekt/gatsby-starter-hyperobjekt
+  branch: master
 
 # FOR LOCAL DEVELOPMENT:
 # ---
 # - uncomment the backend below
 # - run `npx netlify-cms-proxy-server` to serve content
 
-backend:
-  name: proxy
-  proxy_url: http://localhost:8081/api/v1
-  branch: main # optional, defaults to master
+# backend:
+#   name: proxy
+#   proxy_url: http://localhost:8081/api/v1
+#   branch: main # optional, defaults to master
 
 media_folder: /content/assets
 public_folder: /assets
