@@ -1,17 +1,17 @@
 import React, { useContext } from "react"
 import { IconButton, withStyles } from "@material-ui/core"
 import { SiteContext } from "../../utils/site-context"
-import Navigation from "./nav"
+import Navigation from "./nav-mobile-menu"
 import Drawer from "../drawer"
 import icons from "../../icons"
 import { headerLinkFilter } from "./header"
 import clsx from "clsx"
 
-const styles = (theme) => ({
+const styles = {
   button: {},
   drawer: {},
   nav: {},
-})
+}
 
 const MenuCollapsed = ({ classes, className, ...props }) => {
   const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
