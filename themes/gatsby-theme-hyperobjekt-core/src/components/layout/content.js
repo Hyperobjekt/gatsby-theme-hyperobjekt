@@ -5,10 +5,10 @@ import React from "react"
 const styles = (theme) => ({
   root: {
     maxWidth: theme.layout.contentMaxWidth,
-    padding: `0 ${theme.spacing(2)}px`,
+    padding: theme.spacing(0, 2),
     margin: "auto",
     [theme.breakpoints.up("sm")]: {
-      padding: `0 ${theme.spacing(3)}px`,
+      padding: theme.spacing(0, 3),
     },
     // add some margins to the first element if it's not a block
     "& > *:first-child:not(.block)": {

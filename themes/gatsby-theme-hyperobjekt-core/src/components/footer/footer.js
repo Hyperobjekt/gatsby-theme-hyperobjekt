@@ -12,7 +12,7 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "center",
     background: theme.palette.primary.main,
-    padding: `${theme.spacing(4)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(4, 2),
     marginTop: theme.spacing(6),
     [theme.breakpoints.up("sm")]: {
       padding: theme.spacing(3),

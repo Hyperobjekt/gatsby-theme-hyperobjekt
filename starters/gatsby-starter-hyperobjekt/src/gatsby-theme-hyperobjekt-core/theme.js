@@ -72,7 +72,7 @@ const HyperobjektTheme = ({ isDarkMode = false }) => {
         "@global": {
           // update padding and font on <code> elements
           code: {
-            padding: `2px ${theme.spacing(1)}px`,
+            padding: theme.spacing(0.25, 1),
             borderRadius: theme.shape.borderRadius,
             fontFamily: ["Fira Mono", "monospace"].join(","),
           },

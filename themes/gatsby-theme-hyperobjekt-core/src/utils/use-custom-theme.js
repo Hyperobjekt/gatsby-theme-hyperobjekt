@@ -34,6 +34,8 @@ export default function useCustomTheme(theme) {
       palette: {
         type: isDarkMode ? "dark" : "light",
       },
+      // size in rems
+      spacing: (factor) => `${0.5 * factor}rem`,
       overrides: {
         MuiCssBaseline: {
           "@global": globalCss,

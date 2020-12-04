@@ -12,10 +12,7 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: `${theme.spacing(6)}px 0`,
-    [theme.breakpoints.up("sm")]: {
-      padding: `${theme.spacing(8)}px 0`,
-    },
+    padding: theme.spacing(6, 0),
     "& > .MuiTypography-root": {
       marginTop: 0,
     },

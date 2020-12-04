@@ -19,10 +19,10 @@ export const styles = (theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "stretch",
-    padding: `0 ${theme.spacing(2)}px`,
+    padding: theme.spacing(0, 2),
     height: theme.layout.headerHeight,
     [theme.breakpoints.up("sm")]: {
-      padding: `0 ${theme.spacing(3)}px`,
+      padding: theme.spacing(0, 3),
     },
   },
   /* Styles applied to the toolbar component. */
