@@ -1,13 +1,13 @@
 {
   "name": "gatsby-starter-hyperobjekt",
   "description": "Gatsby Starter for Hyperobjekt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Lane Olson <laneolson@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "gatsby": "^2.24.58",
     "gatsby-plugin-netlify-cms": "^4.3.17",
-    "gatsby-theme-hyperobjekt-core": "^1.0.16",
+    "gatsby-theme-hyperobjekt-core": "^1.0.17",
     "mdx-scoped-runtime": "^0.7.5",
     "netlify-cms-app": "^2.13.1",
     "react": "^16.13.1",
