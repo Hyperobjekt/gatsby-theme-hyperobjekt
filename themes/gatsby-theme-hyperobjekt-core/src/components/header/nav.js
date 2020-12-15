@@ -59,7 +59,6 @@ const Navigation = ({
   onSelect,
   ...props
 }) => {
-  console.log(subMenu, links)
   const breadcrumb = useBreadcrumb()
   const isActive = (link) => breadcrumb.some((l) => l.link === link)
   return (
