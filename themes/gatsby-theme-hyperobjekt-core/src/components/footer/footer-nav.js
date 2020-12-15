@@ -4,6 +4,7 @@ import clsx from "clsx"
 
 import { withStyles } from "@material-ui/core"
 import Navigation from "../header/nav"
+import { useSiteMetadata } from "../../utils/use-site-metadata"
 const styles = (theme) => {
   return {
     root: {},
@@ -26,12 +27,14 @@ const styles = (theme) => {
 }
 
 const FooterNav = ({ className, ...props }) => {
+  const { menuLinks } = useSiteMetadata()
   const filterLinks = (link) =>
     link.location === "all" || link.location === "footer"
+  const footerLinks = menuLinks.filter(filterLinks)
   return (
     <Navigation
       className={clsx("footer__nav", className)}
-      filter={filterLinks}
+      links={footerLinks}
       component="div"
       {...props}
     />

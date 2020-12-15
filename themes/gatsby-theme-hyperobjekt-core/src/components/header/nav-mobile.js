@@ -4,7 +4,6 @@ import { SiteContext } from "../../utils/site-context"
 import Navigation from "./nav-mobile-menu"
 import Drawer from "../drawer"
 import icons from "../../icons"
-import { headerLinkFilter } from "./header"
 import clsx from "clsx"
 
 const styles = {
@@ -13,7 +12,7 @@ const styles = {
   nav: {},
 }
 
-const MenuCollapsed = ({ classes, className, ...props }) => {
+const MobileNavigation = ({ classes, className, links, ...props }) => {
   const { isNavOpen, setIsNavOpen } = useContext(SiteContext)
   const MenuIcon = icons["menu"]
 
@@ -43,7 +42,7 @@ const MenuCollapsed = ({ classes, className, ...props }) => {
       >
         <Navigation
           className={clsx("nav--mobile", classes.nav)}
-          filter={headerLinkFilter}
+          links={links}
           onSelect={handleMenuClose}
           subMenu
         />
@@ -52,8 +51,8 @@ const MenuCollapsed = ({ classes, className, ...props }) => {
   )
 }
 
-MenuCollapsed.propTypes = {}
+MobileNavigation.propTypes = {}
 
 export default withStyles(styles, { name: "HypMobileNavigation" })(
-  MenuCollapsed
+  MobileNavigation
 )

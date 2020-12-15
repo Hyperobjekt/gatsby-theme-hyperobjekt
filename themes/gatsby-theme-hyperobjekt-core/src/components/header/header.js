@@ -10,6 +10,7 @@ import { SiteContext } from "../../utils/site-context"
 import { useSiteConfig } from "../../utils/use-site-config"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import clsx from "clsx"
+import { useSiteMetadata } from "../../utils/use-site-metadata"
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -65,14 +66,16 @@ export const styles = (theme) => ({
  * filter function for header links
  * @param {*} link
  */
-export const headerLinkFilter = (link) =>
-  ["all", "header"].indexOf(link.location) > -1
+const headerLinkFilter = (link) => ["all", "header"].indexOf(link.location) > -1
 
 const SiteHeader = ({ classes, children, ...props }) => {
   // state indicating whether header is condensed
   const [shrink, setShrink] = useState(false)
   // state indicating if the header is "stuck"
   const [stuck, setStuck] = useState(false)
+  // site menu
+  const { menuLinks } = useSiteMetadata()
+  const headerLinks = menuLinks.filter(headerLinkFilter)
   // pull header configuration
   const {
     header: { useStickyHeader, useShrinkHeader },
@@ -121,13 +124,14 @@ const SiteHeader = ({ classes, children, ...props }) => {
             <DesktopNavigation
               className={clsx("header__nav", classes.nav)}
               subMenu
-              filter={headerLinkFilter}
+              links={headerLinks}
             />
           )}
           <NavigationIcons />
           {useMobileMenu && (
             <MobileNavigation
               classes={{ button: classes.menuButton, nav: classes.mobileNav }}
+              links={headerLinks}
             />
           )}
         </Toolbar>

@@ -8,6 +8,7 @@ import Content from "./layout/content"
 import Footer from "./footer/footer"
 import { SiteContext } from "../utils/site-context"
 import Helmet from "./helmet"
+
 const Layout = ({
   title,
   description,
@@ -19,7 +20,7 @@ const Layout = ({
   children,
   ...props
 }) => {
-  const { isHome, setIsHome } = useContext(SiteContext) // eslint-disable-line
+  const { isHome, setIsHome, setBreadcrumb } = useContext(SiteContext) // eslint-disable-line
   const location = useLocation()
   // add classes based on the page location
   const pageClasses = isHome

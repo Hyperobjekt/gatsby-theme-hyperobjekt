@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-import { useSiteMetadata } from "../../utils/use-site-metadata"
 import { Link } from "gatsby-theme-material-ui"
 import { List, ListItem, withStyles } from "@material-ui/core"
 import SubNavigation from "./nav-submenu"
 import NavArrow from "./nav-arrow"
+import useBreadcrumb from "../../utils/use-breadcrumb"
 
 export const styles = (theme) => {
   return {
@@ -24,6 +24,11 @@ export const styles = (theme) => {
       alignItems: "flex-start",
       justifyContent: "center",
       padding: 0,
+    },
+    listItemActive: {
+      "& > a": {
+        fontWeight: "bold",
+      },
     },
     /* Styles applies to each link */
     link: {
@@ -50,18 +55,21 @@ const Navigation = ({
   className,
   component: Component = "nav",
   subMenu = false,
+  links,
   onSelect,
-  filter,
   ...props
 }) => {
-  const { menuLinks } = useSiteMetadata()
-  const navLinks = menuLinks.filter(filter)
+  console.log(subMenu, links)
+  const breadcrumb = useBreadcrumb()
+  const isActive = (link) => breadcrumb.some((l) => l.link === link)
   return (
     <Component className={clsx("nav", classes.root, className)} {...props}>
       <List className={clsx("nav__list", classes.list)}>
-        {navLinks.map((menuItem, index) => (
+        {links.map((menuItem, index) => (
           <ListItem
-            className={clsx("nav__list-item", classes.listItem)}
+            className={clsx("nav__list-item", classes.listItem, {
+              [classes.listItemActive]: isActive(menuItem.link),
+            })}
             key={"link" + index}
           >
             <Link
@@ -71,14 +79,15 @@ const Navigation = ({
               to={menuItem.link}
             >
               {menuItem.name}
-              {menuItem.subMenu.length > 0 && subMenu && <NavArrow />}
+              {menuItem.subMenu?.length > 0 && subMenu && <NavArrow />}
             </Link>
-            {menuItem.subMenu.length > 0 && subMenu && (
+            {menuItem.subMenu?.length > 0 && subMenu && (
               <SubNavigation
                 classes={{
                   root: classes.subMenu,
                   link: classes.subMenuLink,
                   listItem: classes.subMenuListItem,
+                  listItemActive: classes.listItemActive,
                 }}
                 onSelect={onSelect}
                 links={menuItem.subMenu}
@@ -92,8 +101,8 @@ const Navigation = ({
 }
 
 Navigation.defaultProps = {
-  filter: (link) => link.location === "all",
   onSelect: () => {},
+  links: [],
 }
 
 Navigation.propTypes = {
@@ -105,10 +114,6 @@ Navigation.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * A function used to filter out links from the menuLinks
-   */
-  filter: PropTypes.func.isRequired,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -1,6 +1,7 @@
 export { default as Helmet } from "./src/components/helmet"
 export { default as Layout } from "./src/components/layout"
 export { SiteContext } from "./src/utils/site-context"
+export { default as useBreadcrumb } from "./src/utils/use-breadcrumb"
 export { useSiteConfig } from "./src/utils/use-site-config"
 export { useSiteMetadata } from "./src/utils/use-site-metadata"
 export { useHasMounted } from "./src/utils/use-has-mounted"
