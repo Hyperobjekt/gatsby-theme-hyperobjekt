@@ -13,13 +13,8 @@ export const useSiteMetadata = () => {
           publicURL
         }
         seoImage: file(name: { eq: "site-social" }) {
-          childImageSharp {
-            resize(width: 1024) {
-              src
-              width
-              height
-            }
-          }
+          extension
+          publicURL
         }
         site {
           siteMetadata {
@@ -56,7 +51,7 @@ export const useSiteMetadata = () => {
       ? data.logo.publicURL // svg logo, return public url
       : data.logo.childImageSharp.fluid // png / jpg logo, return base64 output for gatsby-image
     : null // no logo
-  const seoImage = data.seoImage.childImageSharp.resize
+  const seoImage = data.seoImage.publicURL
   const metaData = data.site.siteMetadata
   const twitterLink = data.site.siteMetadata.socialLinks
     .filter((social) => social.name.toLowerCase() === "twitter")

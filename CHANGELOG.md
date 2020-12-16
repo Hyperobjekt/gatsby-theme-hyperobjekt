@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.21 - December 16, 2020
+
+- drop social image resizing
+
 ## 1.0.20 - December 16, 2020
 
 - fixes to `useBreadcrumb` hook
