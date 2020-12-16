@@ -30,7 +30,7 @@ const Helmet = ({
   const seoDescription = propDescription || description
   const seoKeywords = propKeywords || keywords
   const seoImg = propImage || seoImage
-  const seoImgSrc = `${siteUrl}${seoImg.src}`
+  const seoImgSrc = `${siteUrl}${seoImg}`
   const seoCanononical = propLocation || location.pathname
   return (
     <ReactHelmet
