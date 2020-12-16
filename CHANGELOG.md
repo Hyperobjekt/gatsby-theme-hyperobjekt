@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.20 - December 16, 2020
+
+- fixes to `useBreadcrumb` hook
+
 ## 1.0.17 - December 15, 2020
 
 ### Changes

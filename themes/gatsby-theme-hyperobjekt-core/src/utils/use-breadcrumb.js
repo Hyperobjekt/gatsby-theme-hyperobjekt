@@ -26,8 +26,6 @@ const isLinkMatch = (link, pathname, hash) => {
 const getBreadcrumb = (links, pathname, hash) => {
   for (let i = 0; i < links.length; i++) {
     const l = links[i]
-    // skip check on "/" or "#" links
-    if (l.link.length === 1) continue
     // first, check if any submenu items match
     if (l.subMenu?.length > 0) {
       const subLink = l.subMenu.find((sl) =>
@@ -35,6 +33,8 @@ const getBreadcrumb = (links, pathname, hash) => {
       )
       if (subLink) return [l, subLink]
     }
+    // skip check on "/" or "#" links
+    if (l.link.length === 1) continue
     // no submenu matches, check if the link is contained within the pathname
     if (isLinkMatch(l.link, pathname, hash)) return [l]
   }
