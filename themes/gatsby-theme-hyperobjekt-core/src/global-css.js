@@ -16,7 +16,7 @@ export default {
     top: "10px",
     left: "10px",
     background: "white",
-    zIndex: "1000",
+    zIndex: "9999",
     width: "auto",
     height: "auto",
     clip: "auto",
