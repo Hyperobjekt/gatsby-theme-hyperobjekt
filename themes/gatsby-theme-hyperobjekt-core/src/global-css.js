@@ -1,5 +1,5 @@
 export default {
-  ":root": { "--reachSkipNav": 1 },
+  ":root": { "--reach-skip-nav": 1 },
   "[data-reach-skip-link]": {
     border: "0",
     clip: "rect(0 0 0 0)",
