@@ -118,4 +118,5 @@ export default {
   a: withStyles({ root: { fontWeight: "bold" } })(Link),
   pre: CodeBlock,
   code: CodeInline,
+  br: (props) => <br />,
 }
