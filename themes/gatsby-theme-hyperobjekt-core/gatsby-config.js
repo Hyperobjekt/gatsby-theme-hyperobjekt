@@ -87,6 +87,7 @@ module.exports = (themeOptions) => {
         resolve: `gatsby-plugin-mdx`,
         options: {
           extensions: [`.md`, `.mdx`],
+          commonmark: true,
           defaultLayouts: {
             default: require.resolve("./src/templates/default.js"),
           },
