@@ -19,6 +19,7 @@ This acts as a core theme on which all other themes are based. It houses a basic
 | `useKatex`               | true or false | Defaults to false, enables gatsby-remark-katex for displaying math equations.               |
 | `typekitId`              | String        | Defaults to null, specify an ID for a font collection to load from typekit                  |
 | `remarkImagesWidth`      | Integer value | Defaults to 1440, allows you to customize the image width option for gatsby-remarks-images. |
+| `templates`              | Object        | Defaults to empty object, use this to provide custom template types                         |
 
 Example Config:
 
