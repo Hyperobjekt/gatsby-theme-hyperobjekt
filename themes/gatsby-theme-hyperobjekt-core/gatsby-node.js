@@ -185,6 +185,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
     query {
       allMdx {
         nodes {
+          fileAbsolutePath
           frontmatter {
             path
             title
@@ -202,19 +203,24 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   if (result.errors) {
     reporter.panic("failed to create posts ", result.errors)
   }
-  const pages = result.data.allMdx.nodes
+  // only create pages for files in the content path
+  const pages = result.data.allMdx.nodes.filter(
+    (node) => node.fileAbsolutePath.indexOf(themeOptions.contentPath) > -1
+  )
   pages.forEach((page) => {
     const templateKey = page.frontmatter.template || "default"
     const component =
       themeOptions.templates[templateKey] ||
       require.resolve(`./src/templates/default.js`)
-    actions.createPage({
-      path: page.frontmatter.path,
-      component: component,
-      context: {
-        pathSlug: page.frontmatter.path,
-        frontmatter: page.frontmatter,
-      },
-    })
+    const isValidPage = Boolean(page.frontmatter.path)
+    isValidPage &&
+      actions.createPage({
+        path: page.frontmatter.path,
+        component: component,
+        context: {
+          pathSlug: page.frontmatter.path,
+          frontmatter: page.frontmatter,
+        },
+      })
   })
 }
