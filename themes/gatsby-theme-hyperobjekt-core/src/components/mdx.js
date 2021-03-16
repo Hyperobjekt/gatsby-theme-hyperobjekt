@@ -35,12 +35,12 @@ export const H2 = withStyles(headingStyles)(({ children, ...props }) => (
   </Typography>
 ))
 export const H3 = withStyles(headingStyles)(({ children, ...props }) => (
-  <Typography gutterBottom variant="h4" {...props}>
+  <Typography gutterBottom variant="h3" {...props}>
     {children}
   </Typography>
 ))
 export const H4 = withStyles(headingStyles)(({ children, ...props }) => (
-  <Typography gutterBottom variant="h5" {...props}>
+  <Typography gutterBottom variant="h4" {...props}>
     {children}
   </Typography>
 ))
