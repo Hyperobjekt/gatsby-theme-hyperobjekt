@@ -46,6 +46,9 @@ module.exports = (themeOptions) => {
     rehypePlugins.push(rehypeKatex)
   }
   return {
+    flags: {
+      QUERY_ON_DEMAND: false,
+    },
     siteMetadata: {
       title: `Placeholder title`,
       description: `Placeholder description`,
