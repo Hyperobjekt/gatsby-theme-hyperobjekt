@@ -1,14 +1,13 @@
 import { useStaticQuery, graphql } from "gatsby"
+
+// fluid(maxHeight: 512) {
+//   ...GatsbyImageSharpFluid
+// }
 export const useSiteMetadata = () => {
   const data = useStaticQuery(
     graphql`
       query SiteMetaData {
         logo: file(name: { eq: "site-logo" }) {
-          childImageSharp {
-            fluid(maxHeight: 512) {
-              ...GatsbyImageSharpFluid
-            }
-          }
           extension
           publicURL
         }
@@ -49,7 +48,7 @@ export const useSiteMetadata = () => {
   const logoImage = logo
     ? !logo.childImageSharp && logo.extension === "svg"
       ? data.logo.publicURL // svg logo, return public url
-      : data.logo.childImageSharp.fluid // png / jpg logo, return base64 output for gatsby-image
+      : data.logo.childImageSharp.gatsbyImageData // png / jpg logo, return base64 output for gatsby-image
     : null // no logo
   const seoImage = data.seoImage.publicURL
   const metaData = data.site.siteMetadata

@@ -11,6 +11,7 @@ import { useSiteConfig } from "../../utils/use-site-config"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import clsx from "clsx"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
+import useWindowSize from "../../utils/use-window-size"
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -78,9 +79,11 @@ const SiteHeader = ({ classes, children, ...props }) => {
   const headerLinks = menuLinks.filter(headerLinkFilter)
   // pull header configuration
   const {
-    header: { useStickyHeader, useShrinkHeader },
+    header: { useStickyHeader, useShrinkHeader, mobileMenuBreakpoint },
   } = useSiteConfig()
-  const { useMobileMenu } = useContext(SiteContext)
+  // mobile menu state
+  const { width } = useWindowSize()
+  const useMobileMenu = width < mobileMenuBreakpoint
   const {
     layout: { shrinkOffset },
   } = useTheme()

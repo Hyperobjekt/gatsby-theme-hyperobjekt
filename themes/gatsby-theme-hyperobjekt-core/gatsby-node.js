@@ -4,7 +4,20 @@ const path = require(`path`)
 const mkdirp = require(`mkdirp`)
 const withDefaults = require(`./src/utils/default-options`)
 const Debug = require(`debug`)
-const debug = Debug(`gatsby-theme-blog-core`)
+const debug = Debug(`gatsby-theme-hyperobjekt-core`)
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        path: require.resolve("path-browserify"),
+      },
+      fallback: {
+        fs: false,
+      },
+    },
+  })
+}
 
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {

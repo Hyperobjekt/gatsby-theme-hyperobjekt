@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby"
 export const useSiteConfig = () => {
-  const { siteConfig } = useStaticQuery(
+  const config = useStaticQuery(
     graphql`
       query {
         siteConfig {
@@ -32,5 +32,5 @@ export const useSiteConfig = () => {
       }
     `
   )
-  return siteConfig
+  return config.siteConfig
 }

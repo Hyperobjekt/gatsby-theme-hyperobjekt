@@ -1,5 +1,5 @@
 import React from "react"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby-theme-material-ui"
 import { useSiteConfig } from "../../utils/use-site-config"
 import { useSiteMetadata } from "../../utils/use-site-metadata"
@@ -25,8 +25,8 @@ const LogoImage = ({ logo, title, ...props }) => {
   return typeof logo === "string" ? (
     <img src={logo} alt={title} {...props} />
   ) : (
-    <Img
-      fluid={logo}
+    <GatsbyImage
+      image={logo}
       alt={title}
       imgStyle={{ objectFit: "contain" }}
       {...props}

@@ -122,7 +122,6 @@ module.exports = (themeOptions) => {
       { resolve: `gatsby-transformer-json` },
       { resolve: `gatsby-plugin-sharp` },
       { resolve: `gatsby-plugin-catch-links` },
-      { resolve: `gatsby-plugin-offline` },
     ].filter(Boolean),
   }
 }
